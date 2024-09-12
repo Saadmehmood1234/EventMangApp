@@ -133,7 +133,7 @@ export default function AdminSidebar() {
 
            
           </div>
-          <div className="flex items-center w-full justify-center flex-auto">
+          {/* <div className="flex items-center w-full justify-center flex-auto">
     
             <button
               onClick={() => setOpenModal(true)}
@@ -173,7 +173,7 @@ export default function AdminSidebar() {
               </Modal.Body>
               
             </Modal>
-          </div>
+          </div> */}
         </div>
       )}
     </>

@@ -157,22 +157,32 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async authorized({ request: { nextUrl }, auth }) {
       const isLoggedIn = !!auth?.user;
+      console.log(isLoggedIn);
       const { pathname } = nextUrl;
 
       if (publicRoutes.includes(pathname)) {
         return true;
       }
+   
+      // if (authRoutes.includes(pathname)) {
+      //   if (isLoggedIn) {
 
+      //     // return Response.redirect(new URL("/", nextUrl));
+      //   }
+      // }
+
+      if (!isLoggedIn) {
+        return NextResponse.redirect(new URL("/auth/signin", nextUrl));
+      }
+      const role = auth?.user?.role || 'user';
       if (authRoutes.includes(pathname)) {
         if (isLoggedIn) {
-          return Response.redirect(new URL("/", nextUrl));
+          if (role === "admin") {
+            return NextResponse.redirect(new URL("/admin", nextUrl)); // Admin redirect
+          } else {
+            return NextResponse.redirect(new URL("/", nextUrl)); // User redirect
+          }
         }
-      }
-
-      // Check user role and redirect if necessary
-      const role = auth?.user?.role || 'user';
-      if (pathname.startsWith('/admin') && role !== "admin") {
-        return NextResponse.redirect(new URL("/admin", nextUrl));
       }
       return isLoggedIn;
     },
@@ -196,3 +206,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/auth/signin",
   },
 });
+
+
+
+

@@ -19,6 +19,13 @@ export default async function Navbar() {
         </Link>
       ) : (
         <form action={handleSignOut}>
+          <div className="flex gap-4 justify-center items-center">
+          <Link href="/admin">Admin</Link>
+             <Button variant="default" type="submit">
+                Sign Out
+              </Button>
+            
+              </div>
           {!showNavbar && (
            
             <div className="flex gap-4 justify-center items-center">
@@ -27,15 +34,15 @@ export default async function Navbar() {
                 Events
               </Link> */}
               <Link href="/user/profile">profile</Link>
-              <Link
+              {/* <Link
                 href="/user/history"
                 className="hover:underline text-gray-700"
               >
                 Event History
-              </Link>
-              <Button variant="default" type="submit">
+              </Link> */}
+              {/* <Button variant="default" type="submit">
                 Sign Out
-              </Button>
+              </Button> */}
             </div>
            )} 
         </form>

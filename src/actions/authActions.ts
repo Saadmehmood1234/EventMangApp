@@ -13,6 +13,7 @@ export async function handleCredentialsSignin({ email, password }: {
     password: string
 }) {
     try {
+   
         await signIn("credentials", { email, password, redirectTo: "/" });
     } catch (error) {
         if (error instanceof AuthError) {
@@ -78,3 +79,5 @@ export async function handleSignUp({ name, email, password, confirmPassword }: {
         return { success: false, message: "An unexpected error occurred. Please try again." };
     }
 }
+
+
