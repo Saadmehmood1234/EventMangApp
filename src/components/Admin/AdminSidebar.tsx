@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { RiCalendarScheduleFill } from "react-icons/ri";
 import { FaCalendarPlus } from "react-icons/fa6";
-
+import { MdEvent } from "react-icons/md";
 import {
   HiChartPie,
   HiUser,
@@ -19,7 +19,7 @@ import {
 } from "react-icons/hi";
 import { RiMenu4Fill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-import { handleSignOut } from "@/actions/authActions";
+
 export default function AdminSidebar() {
   const pathname = usePathname();
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -44,7 +44,7 @@ export default function AdminSidebar() {
     <>
       <div onClick={() => setShowSidebar(!showSidebar)}>
         {!showSidebar && (
-          <RiMenu4Fill className="text-3xl cursor-pointer md:hidden absolute top-6 left-3 z-[100]" />
+          <RiMenu4Fill className="text-3xl cursor-pointer md:hidden absolute top-6  z-[100]" />
         )}
       </div>
 
@@ -109,6 +109,16 @@ export default function AdminSidebar() {
               </div>
             </Link>
 
+            <Link href={"/admin/allevents"}>
+              <div
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#eee] pl-4 text-[20px] text-[#595959] ${
+                  pathname === "/admin/allevents" ? "bg-[#3d24fc2a]": ""
+                }`}
+              >
+           <MdEvent />
+                <p className="text">Events</p>
+              </div>
+            </Link>
             <Link href={"/admin/history"}>
               <div
                 className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#eee] pl-4 text-[20px] text-[#595959] ${
@@ -131,10 +141,9 @@ export default function AdminSidebar() {
               </div>
             </Link>
 
-           
+   
           </div>
-          {/* <div className="flex items-center w-full justify-center flex-auto">
-    
+          <div className="flex items-center w-full justify-center flex-auto">
             <button
               onClick={() => setOpenModal(true)}
               className="w-[270px] items-center bg-blue-500 h-[40px] rounded-md text-white"
@@ -142,7 +151,6 @@ export default function AdminSidebar() {
             >
               Logout
             </button>
-         
             <Modal
               show={openModal}
               size="md"
@@ -151,29 +159,24 @@ export default function AdminSidebar() {
             >
               <Modal.Header />
               <Modal.Body>
-              <form action={handleSignOut}>
                 <div className="text-center ">
                   <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                     Are you sure you want to Logout?
                   </h3>
                   <div className="flex justify-center gap-4">
-               
-                  <Link href={"/auth/signin"}>
-                    <Button color="blue" className="text-white bg-blue-500"  type="submit" onClick={() => setOpenModal(false)}>
+                  <Link href={"/logout"}>
+                    <Button color="blue" className="text-white bg-blue-500" onClick={() => setOpenModal(false)}>
                       Yes, I'm sure
                     </Button>
                     </Link>
                     <Button color="gray" onClick={() => setOpenModal(false)}>
                       No, cancel
                     </Button>
-                
                   </div>
                 </div>
-                </form>
               </Modal.Body>
-              
             </Modal>
-          </div> */}
+          </div>
         </div>
       )}
     </>

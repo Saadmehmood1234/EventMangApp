@@ -82,11 +82,11 @@ const EventTable = () => {
         <table className="min-w-full border-collapse border border-gray-300">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">Name</th>
-              <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Username</th>
-              {/* <th className="border border-gray-300 px-4 py-2">Location</th>
-              <th className="border border-gray-300 px-4 py-2">Organiser</th> */}
+              <th className="border border-gray-300 px-4 py-2">Title</th>
+              <th className="border border-gray-300 px-4 py-2">Start Date</th>
+              <th className="border border-gray-300 px-4 py-2">End Date</th>
+              <th className="border border-gray-300 px-4 py-2">Location</th>
+              <th className="border border-gray-300 px-4 py-2">Organiser</th>
               <th className="border border-gray-300 px-4 py-2">Actions</th>
             </tr>
           </thead>
@@ -96,8 +96,8 @@ const EventTable = () => {
                 <td className="border border-gray-300 px-4 py-2">{event.title}</td>
                 <td className="border border-gray-300 px-4 py-2">{new Date(event.startDate).toLocaleDateString()}</td>
                 <td className="border border-gray-300 px-4 py-2">{event.endDate ? new Date(event.endDate).toLocaleDateString() : '-'}</td>
-                {/* <td className="border border-gray-300 px-4 py-2">{event.location}</td>
-                <td className="border border-gray-300 px-4 py-2">{event.organiser}</td> */}
+                <td className="border border-gray-300 px-4 py-2">{event.location}</td>
+                <td className="border border-gray-300 px-4 py-2">{event.organiser}</td>
                 <td className="border border-gray-300 px-4 py-2">
                   <button
                     className="bg-red-500 text-white px-2 py-1 rounded"

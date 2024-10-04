@@ -7,6 +7,7 @@ export interface IEvent extends Document {
   startDate: Date;
   endDate?: Date;
   // time?: string; // 
+  category:string;
   location: string;
   organiser: string;
   sponsers: string;
@@ -58,7 +59,7 @@ const eventSchema: Schema<IEvent> = new Schema({
   attendees: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'EventParticipant',
     },
   ],
   imageUrl: {
@@ -68,6 +69,10 @@ const eventSchema: Schema<IEvent> = new Schema({
   tags: {
     type: [String],
     default: [],
+  },
+  category:{
+    type:String,
+    required:true
   },
   createdAt: {
     type: Date,

@@ -13,6 +13,7 @@ interface EventBody {
   sponsers: string;
   imageUrl?: string;
   tags?: string[];
+  category:string;
   // time: string;
 }
 
@@ -33,6 +34,7 @@ export const POST = async (req: NextRequest) => {
       sponsers,
       imageUrl,
       tags,
+      category,
       // time,
     } = body;
 
@@ -43,7 +45,8 @@ export const POST = async (req: NextRequest) => {
       !endDate ||
       !location ||
       !organiser ||
-      !members
+      !members ||
+      !category
       // !time
     ) {
       return NextResponse.json(
@@ -63,6 +66,7 @@ export const POST = async (req: NextRequest) => {
       sponsers,
       imageUrl,
       tags,
+      category
       // time,
     });
     console.log("ssad");
@@ -81,6 +85,7 @@ export const POST = async (req: NextRequest) => {
         sponsers: newEvent.sponsers,
         imageUrl: newEvent.imageUrl,
         tags: newEvent.tags,
+        category:newEvent.category,
         // time: newEvent.time,
       },
       { status: 201 }
