@@ -124,13 +124,13 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
     fetchEvent();
   }, [params.id]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[300px]">
-        <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-[300px]">
+  //       <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
+  //     </div>
+  //   );
+  // }
 
   if (error || !event) {
     return (
@@ -141,33 +141,33 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-[#ebcddd] to-[#c8daf1] p-6">
+    <div className="min-h-screen flex flex-col items-center bg-black p-6">
       {/* Header */}
       <div className="text-center mb-6 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-8">
-        <div className="flex flex-col items-center lg:items-start">
+        {/* <div className="flex flex-col items-center lg:items-start">
           <Image
             src="/innovation.png"
             width={70}
             height={70}
             alt="Innovation Logo"
           />
-          <h3 className="text-lg font-semibold mt-1 lg:mt-2 lg:-ml-6">
+          <h3 className="text-lg font-semibold mt-1 text-gray-200 lg:mt-2 lg:-ml-6">
             Creative Events
           </h3>
-        </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-gray-800 text-center lg:text-left">
+        </div> */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-gray-200 text-center lg:text-left">
           Event Registration Form
         </h1>
       </div>
 
       {/* Form Card */}
-      <div className="bg-white border-2 border-black rounded-lg shadow-lg p-6 sm:p-8 w-full max-w-4xl">
+      <div className="bg-gray-800/50 border-2 border-gray-200/50 rounded-lg shadow-lg p-6 sm:p-8 w-full max-w-4xl">
         <div className="p-4 rounded-md mb-6 flex flex-row max-sm:flex-col justify-between border-b-4 border-black">
           <div className="mb-4 lg:mb-0">
-            <h2 className="text-2xl font-bold text-gray-700 mb-6">
+            <h2 className="text-2xl font-bold text-gray-200 mb-6">
               About This Event
             </h2>
-            <ul className="text-lg text-gray-600 space-y-2">
+            <ul className="text-lg text-gray-400 space-y-2">
               <li>
                 <strong>Event Name:</strong> {event.title}
               </li>
@@ -188,7 +188,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
               alt="Speaker Michelle Erica"
               className="w-30 h-30 rounded-full mb-3"
             />
-            <span className="text-xl font-extrabold text-gray-700 text-center">
+            <span className="text-xl font-extrabold text-gray-200 text-center">
               Michelle Erica
             </span>
           </div>
@@ -196,7 +196,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
 
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
           <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-300">
               Full Name
             </label>
             <input
@@ -215,7 +215,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
           </div>
 
           <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-300">
               Enrollment No
             </label>
             <input
@@ -234,7 +234,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
           </div>
 
           <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-300">
               Course
             </label>
             <select
@@ -256,7 +256,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
           </div>
 
           <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-300">
               Semester
             </label>
             <select
@@ -281,7 +281,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
           </div>
 
           <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-300">
               Email
             </label>
             <input
@@ -298,7 +298,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
           </div>
 
           <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-300">
               Phone No
             </label>
             <input
@@ -316,7 +316,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
 
           <button
             type="submit"
-            className="col-span-2 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#36b67a] hover:bg-[#36b67a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5C57D6]"
+            className="col-span-2 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none "
           >
             Register
           </button>

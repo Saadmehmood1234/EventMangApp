@@ -2,71 +2,66 @@
 "use client";
 import React, { useEffect, useState, useTransition } from 'react';
 import { getEvents } from '@/actions/data';
-import { deleteEvent } from '@/actions/data';
+import { deleteUser } from '@/actions/data';
 import Modal from '@/components/Modal'; // Import the Modal component
-
-interface Event {
+import { getAllUserData } from '@/actions/data';
+interface User {
   id: string;
-  title: string;
-  startDate: string;
-  endDate?: string;
-  location: string;
-  organiser: string;
-  description: string;
+  name: string;
+  email: string;
+  role?: string;
   image?: string;
 }
 
 const EventTable = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
   const [modalOpen, setModalOpen] = useState(false);
-  const [eventIdToDelete, setEventIdToDelete] = useState<string | null>(null);
+  const [userIdToDelete, setUserIdToDelete] = useState<string | null>(null);
 
-  const fetchEvents = async () => {
+  const fetchUsers = async () => {
     try {
-      const fetchedEvents = await getEvents();
-      const formattedEvents: Event[] = fetchedEvents.map((eventData: any) => ({
-        id: eventData.id as string,
-        title: eventData.title,
-        startDate: eventData.startDate.toString(),
-        endDate: eventData.endDate?.toString() || "",
-        image: eventData.image || "",
-        organiser: eventData.organiser,
-        description: eventData.description,
-        location: eventData.location,
+      const fetchedUsers = await getAllUserData();
+      const formattedUsers: User[] = fetchedUsers.map((userData: any) => ({
+        id: userData._id as string,
+        name: userData.name,
+        email: userData.email?.toString() || "N/A", // Safe access to 'email'
+        role: userData.role?.toString() || "No Role", // Safe access to 'role'
+        image: userData.image || "",
       }));
-      setEvents(formattedEvents);
+      console.log(formattedUsers)
+      setUsers(formattedUsers);
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
-    fetchEvents();
+    fetchUsers();
   }, []);
 
   const handleDeleteClick = (eventId: string) => {
-    setEventIdToDelete(eventId);
+    setUserIdToDelete(eventId);
     setModalOpen(true);
   };
 
   const handleDeleteConfirm = async () => {
-    if (!eventIdToDelete) return;
+    if (!userIdToDelete) return;
 
     startTransition(async () => {
       try {
-        await deleteEvent(eventIdToDelete);
-        setEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventIdToDelete));
+        await deleteUser(userIdToDelete);
+        setUsers((prevEvents) => prevEvents.filter((event) => event.id !== userIdToDelete));
         alert('Event deleted successfully!');
       } catch (error) {
         console.error('Error deleting event:', error);
         alert('Failed to delete event');
       } finally {
         setModalOpen(false);
-        setEventIdToDelete(null); // Reset the ID after deletion
+        setUserIdToDelete(null); // Reset the ID after deletion
       }
     });
   };
@@ -74,7 +69,7 @@ const EventTable = () => {
   return (
     <div className="container mx-auto mt-10">
       <div className='flex justify-center items-center '>
-        <h2 className="text-2xl font-bold mb-4">Event List</h2>
+        <h2 className="text-2xl font-bold mb-4">All Users</h2>
       </div>
       {loading ? (
         <p>Loading events...</p>
@@ -84,24 +79,24 @@ const EventTable = () => {
             <tr>
               <th className="border border-gray-300 px-4 py-2">Name</th>
               <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Username</th>
-              {/* <th className="border border-gray-300 px-4 py-2">Location</th>
-              <th className="border border-gray-300 px-4 py-2">Organiser</th> */}
+              {/* <th className="border border-gray-300 px-4 py-2">End Date</th>
+              <th className="border border-gray-300 px-4 py-2">Location</th>*/}
+              <th className="border border-gray-300 px-4 py-2">Role</th>
               <th className="border border-gray-300 px-4 py-2">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {events.map((event) => (
-              <tr key={event.id}>
-                <td className="border border-gray-300 px-4 py-2">{event.title}</td>
-                <td className="border border-gray-300 px-4 py-2">{new Date(event.startDate).toLocaleDateString()}</td>
-                <td className="border border-gray-300 px-4 py-2">{event.endDate ? new Date(event.endDate).toLocaleDateString() : '-'}</td>
-                {/* <td className="border border-gray-300 px-4 py-2">{event.location}</td>
-                <td className="border border-gray-300 px-4 py-2">{event.organiser}</td> */}
+          <tbody className='text-center'>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td className="border border-gray-300 px-4 py-2">{user.name}</td>
+                {/* <td className="border border-gray-300 px-4 py-2">{new Date(event.startDate).toLocaleDateString()}</td>
+                <td className="border border-gray-300 px-4 py-2">{event.endDate ? new Date(event.endDate).toLocaleDateString() : '-'}</td> */}
+                <td className="border border-gray-300 px-4 py-2">{user.email}</td>
+                <td className="border border-gray-300 px-4 py-2">{user.role}</td>
                 <td className="border border-gray-300 px-4 py-2">
                   <button
                     className="bg-red-500 text-white px-2 py-1 rounded"
-                    onClick={() => handleDeleteClick(event.id)}
+                    onClick={() => handleDeleteClick(user.id)}
                     disabled={isPending} // Disable button during transition
                   >
                     {isPending ? 'Deleting...' : 'Delete'}

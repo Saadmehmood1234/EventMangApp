@@ -1,116 +1,18 @@
-// import NextAuth from "next-auth";
-// import Credentials from "next-auth/providers/credentials";
-// import { signInSchema } from "./lib/zod";
-// import { MyEventUser } from "./model/User";
-// import { string } from "zod";
-// import bcryptjs from "bcryptjs";
-// const publicRoutes = ["/auth/signin", "/auth/signup"];
-// const authRoutes = ["/auth/signin", "/auth/signup"];
-// import connectToMongoDb from "./utils/dbConnect";
-    
-// export const { handlers, signIn, signOut, auth } = NextAuth({
-
-//   providers: [
-//     Credentials({
-//       credentials: {
-//         email: { label: "Email", type: "email", placeholder: "Email" },
-//         password: {
-//           label: "Password",
-//           type: "password",
-//           placeholder: "Password",
-//         },
-//       },
-//       async authorize(credentials) {
-//         await connectToMongoDb();
-//         let user = null;
-//         const parsedCredentials = signInSchema.safeParse(credentials);
-//         if (!parsedCredentials.success) {
-//           console.error("Invalid credentials:", parsedCredentials.error.errors);
-//           return null;
-//         }
-      
-     
-//    user = await MyEventUser.findOne({ email:credentials.email })
-//         if (!user) {
-//           console.log("Invalid credentials");
-//           return null;
-//         }
-
-//         if (!user.password) {
-//           return null;
-//         }
-
-//         const isPasswordValid = await bcryptjs.compare(
-//           credentials.password as string,
-//           user.password
-//         );
-//         if (!isPasswordValid) {
-//           return null;
-//         }
-//         const { password, ...userWithoutPassword } = user;
-//         return userWithoutPassword;
-   
-//       },
-//     }),
-//   ],
-//   callbacks: {
-//     authorized({ request: { nextUrl }, auth }) {
-//       const isLoggedIn = !!auth?.user;
-//       const { pathname } = nextUrl;
-
-//       if (publicRoutes.includes(pathname)) {
-//         return true;
-//       }
-
-//       if (authRoutes.includes(pathname)) {
-//         if (isLoggedIn) {
-//           return Response.redirect(new URL("/", nextUrl));
-//         }
-//       }
-
-//       return isLoggedIn;
-
-//       // const role = auth?.user.role || 'user';
-//       // if (pathname.startsWith('/auth/signin') && isLoggedIn) {
-//       //     return Response.redirect(new URL('/', nextUrl));
-//       // }
-//       // if (pathname.startsWith("/page2") && role !== "admin") {
-//       //     return Response.redirect(new URL('/', nextUrl));
-//       // }
-//       // return !!auth;
-//     },
-//     jwt({ token, user, trigger, session }) {
-//       if (user) {
-//         token.id = user.id as string;
-//         token.role = user.role as string;
-//       }
-//       if (trigger === "update" && session) {
-//         token = { ...token, ...session };
-//       }
-//       return token;
-//     },
-//     session({ session, token }) {
-//       session.user.id = token.id;
-//       session.user.role = token.role;
-//       return session;
-//     },
-//   },
-//   pages: {
-//     signIn: "/auth/signin",
-//   },
-// });
-
-
-
-import NextAuth from "next-auth";
+import NextAuth, { AuthError, CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { signInSchema } from "./lib/zod";
+// import GoogleProvider from "next-auth/providers/google";
+// import { signInSchema } from "./lib/zod";
 import { MyEventUser } from "./model/User";
 import bcryptjs from "bcryptjs";
 import connectToMongoDb from "./utils/dbConnect";
 import { NextResponse } from "next/server";
-const publicRoutes = ["/auth/signin", "/auth/signup"];
-const authRoutes = ["/auth/signin", "/auth/signup"];
+const authRoutes: string[] = [
+  '/admin',
+  '/user',
+];
+
+// const publicRoutes = ["/auth/signin", "/auth/signup"];
+// const authRoutes = ["/auth/signin", "/auth/signup"];
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -123,90 +25,59 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           placeholder: "Password",
         },
       },
-      async authorize(credentials) {
-        await connectToMongoDb(); // Ensure DB connection is established
-        let user = null;
-        const parsedCredentials = signInSchema.safeParse(credentials);
-        if (!parsedCredentials.success) {
-          console.error("Invalid credentials:", parsedCredentials.error.errors);
-          return null;
+      authorize: async (credentials) => {
+        const email = credentials?.email as string | undefined;
+        const password = credentials?.password as string | undefined;
+
+        if (!email || !password) {
+          throw new CredentialsSignin("Credential is missing");
         }
-      
-        user = await MyEventUser.findOne({ email: credentials.email }).exec();
+
+        await connectToMongoDb();
+        const user = await MyEventUser.findOne({ email }).select("+password");
+        console.log(user)
         if (!user) {
-          console.log("Invalid credentials");
-          return null;
+          throw new CredentialsSignin({ cause: "User not found" });
         }
 
         if (!user.password) {
-          return null;
+          throw new CredentialsSignin({ cause: "Invalid Email or Password" });
         }
 
-        const isPasswordValid = await bcryptjs.compare(
-          credentials.password as string,
-          user.password
-        );
-        if (!isPasswordValid) {
-          return null;
+        const isMatch = await bcryptjs.compare(password, user.password);
+
+        if (!isMatch) {
+          throw new CredentialsSignin("Password does not match");
         }
-        const { password, ...userWithoutPassword } = user.toObject(); // Convert to plain object
-        return userWithoutPassword;
+
+        return user;
       },
     }),
   ],
   callbacks: {
     async authorized({ request: { nextUrl }, auth }) {
       const isLoggedIn = !!auth?.user;
-      console.log(isLoggedIn);
-      const { pathname } = nextUrl;
-
-      if (publicRoutes.includes(pathname)) {
-        return true;
+      const email=auth?.user.email;
+      await connectToMongoDb();
+      const UserDatabase = await MyEventUser.findOne({ email }).select("+password");
+      if(!UserDatabase){
+        return NextResponse.redirect(new URL("/auth/signin", nextUrl));
       }
-   
-      // if (authRoutes.includes(pathname)) {
-      //   if (isLoggedIn) {
-
-      //     // return Response.redirect(new URL("/", nextUrl));
-      //   }
-      // }
-
       if (!isLoggedIn) {
         return NextResponse.redirect(new URL("/auth/signin", nextUrl));
       }
-      const role = auth?.user?.role || 'user';
-      if (authRoutes.includes(pathname)) {
-        if (isLoggedIn) {
-          if (role === "admin") {
-            return NextResponse.redirect(new URL("/admin", nextUrl)); // Admin redirect
-          } else {
-            return NextResponse.redirect(new URL("/", nextUrl)); // User redirect
-          }
+  
+      const role = UserDatabase?.user?.role || "user";
+
+      if (authRoutes.includes(nextUrl.pathname)) {
+        if (role === "admin") {
+          return NextResponse.redirect(new URL("/admin", nextUrl));
+        } else {
+          return NextResponse.redirect(new URL("/user", nextUrl));
         }
       }
-      return isLoggedIn;
+      return true;
     },
-    async jwt({ token, user, trigger, session }) {
-      if (user) {
-        token.id = user.id as string;
-        token.role = user.role as string;
-      }
-      if (trigger === "update" && session) {
-        token = { ...token, ...session };
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.role = token.role;
-      return session;
-    },
-  },
-  pages: {
-    signIn: "/auth/signin",
-  },
+  }
+  
 });
-
-
-
-

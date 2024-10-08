@@ -79,13 +79,13 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
     fetchEvent();
   }, [params.id]);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[300px]">
-        <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-[300px]">
+  //       <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
+  //     </div>
+  //   );
+  // }
 
   if (error || !event) {
     return (
@@ -96,72 +96,80 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 flex justify-center items-center text-gray-800">
-      <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-8">
+    <div className="min-h-screen bg-black flex justify-center items-center text-gray-200">
+      <div className="max-w-4xl w-full bg-gray-700/30 rounded-lg shadow-md sm:shadow-gray-100/40 p-8">
         <img
-          src={event.image || "/eventa1.jpg"}
+          src={event.image || "/eventa1.jpg"} 
           alt={event.title}
           className="w-full h-64 object-cover rounded-lg mb-6"
         />
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">{event.title}</h1>
+        <h1 className="text-4xl font-bold text-gray-200 mb-4">{event.title}</h1>
+        <div className="flex max-sm:flex-col mb-2">
+          <div className="flex items-center text-gray-200 mb-1 w-full sm:w-1/2">
+            <FaUser className="mr-2 text-indigo-600" />
+            <span className="text-xl font-semibold text-gray-200">
+              {event.members} participants
+            </span>
+          </div>
+          <div className="flex items-center text-gray-200 mb-2 w-full sm:w-1/2">
+            <MdCategory className="mr-2 text-indigo-600" />
+            <h2 className="text-xl font-semibold text-gray-200">Category:</h2>
+            <span className="ml-2 text-lg text-gray-200">{event.category}</span>
+          </div>
+        </div>
 
-        <div className="flex  flex-wrap gap-6 text-gray-700 mb-6">
-          <div className="flex items-center mr-6">
+        <div className="flex max-sm:flex-col  mb-2">
+          <div className="flex items-center text-gray-200 mb-2 sm:w-1/2 w-full ">
+            <LiaPeopleCarrySolid className="mr-2 text-indigo-600" />
+            <h2 className="text-xl font-semibold text-gray-200">
+              Organised by:
+            </h2>
+            <span className="ml-2 text-lg text-gray-200 ">
+              {event.organiser}
+            </span>
+          </div>
+
+          <div className="flex items-center text-gray-200 mb-2 sm:w-1/2 w-full">
+            <GiReceiveMoney className="mr-2 text-indigo-600" />
+            <h2 className="text-xl font-semibold text-gray-200">Sponsors:</h2>
+            <span className="ml-2 text-lg text-gray-200">
+              {event.sponsers || "None"}
+            </span>
+          </div>
+        </div>
+        <div className="flex max-sm:flex-col text-gray-200  mb-2">
+          <div className="flex items-center sm:w-1/2 w-full  mb-2 mr-6 ">
             <FaCalendarAlt className="mr-2 text-indigo-600" />
             <span>
               {formatDate(event.startDate)} - {formatDate(event.endDate)}
             </span>
           </div>
-          <div className="flex items-center mr-6">
+          <div className="flex items-center mr-6 sm:w-1/2 w-full  ">
             <FaMapMarkerAlt className="mr-2 text-indigo-600" />
             <span>{event.location}</span>
           </div>
-          <div className="flex items-center mr-6">
-            <FaUser className="mr-2 text-indigo-600" />
-            <span>{event.members} participants</span>
-          </div>
         </div>
 
-        <div className="flex items-center text-gray-700 mb-6">
-          <LiaPeopleCarrySolid className="mr-2 text-indigo-600" />
-          <h2 className="text-xl font-semibold text-gray-900">Organised by:</h2>
-          <span className="ml-2 text-lg text-gray-700">{event.organiser}</span>
-        </div>
-
-        <div className="flex items-center text-gray-700 mb-6">
-          <GiReceiveMoney className="mr-2 text-indigo-600" />
-          <h2 className="text-xl font-semibold text-gray-900">Sponsors:</h2>
-          <span className="ml-2 text-lg text-gray-700">
-            {event.sponsers || "None"}
-          </span>
-        </div>
-
-        <div className="flex items-center text-gray-700 mb-6">
-          <MdCategory className="mr-2 text-indigo-600" />
-          <h2 className="text-xl font-semibold text-gray-900">Category:</h2>
-          <span className="ml-2 text-lg text-gray-700">{event.category}</span>
-        </div>
-
-        <div className="flex items-center text-gray-700 mb-6">
+        <div className="flex items-center text-gray-200  mb-2 ">
           <FaTags className="mr-2 text-indigo-600" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Tags:</h2>
-          <span className="ml-2 text-lg text-gray-700">
+          <h2 className="text-xl font-semibold text-gray-200 mb-2">Tags:</h2>
+          <span className="ml-2 text-lg text-gray-200">
             {event.tags?.join(", ") || "No tags"}
           </span>
         </div>
         <div className="mb-4">
-          <div className="flex items-center text-gray-700">
+          <div className="flex items-center text-gray-200">
             <MdOutlineDescription className="mr-2 text-indigo-600" />
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-gray-200 mb-2">
               Description:
             </h2>
           </div>
-          <p className="text-lg text-gray-700">{event.description}</p>
+          <p className="text-lg text-gray-200">{event.description}</p>
         </div>
 
         <div className="text-center mt-4">
           <Link href={`/user/registration/${id}`}>
-            <button className="bg-green-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-700 transition duration-300 ease-in-out">
+            <button className="bg-orange-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-orange-700 transition duration-300 ease-in-out">
               Register Now
             </button>
           </Link>

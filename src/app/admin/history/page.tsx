@@ -52,14 +52,14 @@ const EventHistory = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 lg:p-8">
-      <h1 className="text-4xl font-bold text-purple-600 mb-8 text-center">
+    <div className="min-h-screen bg-slate-700 p-4 lg:p-8">
+      <h1 className="text-4xl font-bold text-gray-300 mb-8 text-center">
         Event History
       </h1>
 
       {loading ? (
         <div className="flex justify-center items-center min-h-[300px]">
-          <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-t-4 border-blue-600 border-solid rounded-full animate-spin"></div>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -67,24 +67,24 @@ const EventHistory = () => {
             events.map((event) => (
               <div
                 key={event.id}
-                className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 rounded-lg shadow-md p-6 transition-transform transform hover:scale-105"
+                className="bg-gray-900/90 rounded-lg shadow-md p-6 transition-transform transform hover:scale-105"
               >
-                <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+                <h2 className="text-2xl font-semibold text-blue-600 mb-2">
                   {event.title}
                 </h2>
-                <p>Start date</p>
-                <p className="text-sm text-gray-500 mb-4">
+                <p className="text-gray-200">Start date</p>
+                <p className="text-sm text-gray-300 mb-4">
                   {new Date(event.startDate).toDateString()}
                 </p>
-                <p>End date</p>
-                <p className="text-sm text-gray-500 mb-4">
+                <p className="text-gray-200">End date</p>
+                <p className="text-sm text-gray-300 mb-4">
                   {new Date(event.endDate).toDateString()}
                 </p>
-                <p className="text-gray-600 mb-4">{event.description}</p>
+                <p className="text-gray-300 mb-4">{event.description}</p>
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-center">No upcoming events.</p>
+            <p className="text-gray-200 text-center">No upcoming events.</p>
           )}
         </div>
       )}

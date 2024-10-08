@@ -89,9 +89,9 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200">
+    <div className="bg-gray-900">
       <div className=" text-center items-center pt-6  lg:px-8 px-3">
-        <h1 className="text-4xl font-bold text-purple-600 text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
+        <h1 className="text-4xl font-bold text-gray-300 text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
           Create New Event
         </h1>
       </div>
@@ -103,7 +103,7 @@ const CreateEvent = () => {
         )}
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 bg-white p-8 rounded-lg shadow-lg"
+          className="space-y-6 bg-white p-8 rounded-lg shadow-md border-2 border-black shadow-gray-400/50"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1 max-lg:col-span-2">

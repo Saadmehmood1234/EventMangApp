@@ -200,10 +200,10 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="p-8 bg-gradient-to-br from-purple-100 to-blue-100 h-[100vh] flex items-center justify-center">
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="p-8 bg-slate-700 h-[100vh] flex items-center justify-center">
+      <div className="w-full max-w-4xl bg-gray-950/90 rounded-xl shadow-lg overflow-hidden">
         <div className="p-6 border-b border-gray-200">
-          <h1 className="text-4xl font-extrabold text-gray-800">
+          <h1 className="text-4xl font-extrabold text-gray-300">
             {participant.fullname}
           </h1>
           {/* <p className="text-xl text-gray-600 mt-2">
@@ -212,7 +212,7 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
               : participant.event.name}
           </p> */}
         </div>
-        <div className="p-6">
+        <div className="p-6 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
               <h2 className="text-lg font-semibold text-gray-700 mb-2">

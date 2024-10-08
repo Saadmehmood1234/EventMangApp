@@ -108,12 +108,12 @@ useEffect(() => {
         </div>
       </div> */}
 
-<div className="flex justify-between items-center pt-6 py-4 lg:px-8 px-3 bg-slate-50">
+<div className="flex justify-between items-center pt-6 py-4 lg:px-8 px-3 bg-slate-900">
   <div className="flex w-full gap-4 items-center max-md:flex-col max-md:justify-center max-md:items-center">
-    <h1 className="text-3xl font-bold text-purple-600">Participants</h1>
-    <div className="text-xl font-semibold text-gray-600">
+    <h1 className="text-3xl font-bold text-gray-200">Participants</h1>
+    <div className="text-xl font-semibold text-gray-400">
       All Participants:{" "}
-      <span className="text-purple-600">
+      <span className="text-blue-600">
         {participants.filter((participant) => 
           events.some(event => event.id === participant.eventId)
         ).length}
@@ -123,7 +123,7 @@ useEffect(() => {
 </div>
 
 
-      <div className="p-8 bg-gray-100 min-h-screen">
+      <div className="p-8 bg-slate-700 min-h-screen">
         {events.map((event, index) => {
           // Filter participants for the current event
           const eventParticipants = participants.filter(
@@ -136,16 +136,16 @@ useEffect(() => {
             : eventParticipants.slice(0, 5);
 
           return (
-            <div key={index} className="mb-8 p-6 bg-white rounded-lg shadow-lg">
+            <div key={index} className="mb-8 p-6 bg-gray-950/90 rounded-lg shadow-lg">
               <div className="flex max-md:flex-col justify-between">
                 <div className="flex items-center mb-4">
-                  <h2 className="text-3xl max-lg:text-2xl font-semibold text-gray-700">
+                  <h2 className="text-3xl max-lg:text-2xl font-semibold text-blue-600">
                     {event.title}
                   </h2>
                 </div>
-                <div className="font-semibold max-md:mb-4">
+                <div className="font-semibold text-gray-200 max-md:mb-4">
                   Participants:{" "}
-                  <span className="text-purple-600">
+                  <span className="text-blue-600">
                     {eventParticipants.length}
                   </span>
                 </div>
@@ -157,10 +157,10 @@ useEffect(() => {
                   displayedParticipants.map((participant, index) => (
                     <div key={participant.id} className="flex justify-between">
                       <Link href={`/admin/participants/${participant.id}`}>
-                      <li className="text-gray-600 hover:text-blue-500">{participant.fullname}</li>
+                      <li className="text-gray-200 hover:text-blue-500">{participant.fullname}</li>
                       </Link>
                       <Link href={`/admin/participants/${participant.id}`}>
-                        <BiSolidUserDetail />
+                        <BiSolidUserDetail className="text-gray-400 hover:text-blue-600"/>
                       </Link>
                     </div>
                   ))
