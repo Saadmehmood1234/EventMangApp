@@ -73,8 +73,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password", placeholder: "Password" },
       },
       authorize: async (credentials) => {
-        const email = credentials?.email as string | undefined;
-        const password = credentials?.password as string | undefined;
+        const email = credentials?.email as string 
+        const password = credentials?.password as string
 
         if (!email || !password) {
           throw new CredentialsSignin("Credential is missing");
@@ -97,8 +97,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  // session: {
-  //   strategy: "jwt", // Use this instead of `jwt: true`
-  // },
-  // secret: process.env.NEXTAUTH_SECRET, // Secret for both JWT and session
+  session: {
+    strategy: "jwt", // Use this instead of `jwt: true`
+  },
+  secret: process.env.NEXTAUTH_SECRET, // Secret for both JWT and session
 });
