@@ -97,8 +97,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  session: {
-    strategy: "jwt", // Use this instead of `jwt: true`
-  },
-  secret: process.env.NEXTAUTH_SECRET, // Secret for both JWT and session
+  // session: {
+  //   strategy: "jwt", // Use this instead of `jwt: true`
+  // },
+  // secret: process.env.NEXTAUTH_SECRET, // Secret for both JWT and session
 });
