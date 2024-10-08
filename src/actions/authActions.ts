@@ -20,8 +20,6 @@ export async function handleSignOut() {
 //   return Eventuser;
 // };
 
-
-
 export const getUserData = async () => {
   await connectToMongoDb();
   const session = await auth();
@@ -38,7 +36,7 @@ export const getUserData = async () => {
   }
 
   console.log("Fetched User Data:", eventUser);
-  
+
   // Return the user wrapped in an array to allow mapping
-  return [eventUser]; 
+  return [eventUser];
 };

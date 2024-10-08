@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
 
 export async function middleware(req:any) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
+console.log(token)
   const protectedRoutes = ['/user', '/admin']; // Add any other protected routes
 
   // If the route is protected and there is no token, redirect to sign-in
