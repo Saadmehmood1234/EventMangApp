@@ -54,30 +54,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  callbacks: {
-    async authorized({ request: { nextUrl }, auth }) {
-      const isLoggedIn = !!auth?.user;
-      const email=auth?.user.email;
-      await connectToMongoDb();
-      const UserDatabase = await MyEventUser.findOne({ email }).select("+password");
-      if(!UserDatabase){
-        return NextResponse.redirect(new URL("/auth/signin", nextUrl));
-      }
-      if (!isLoggedIn) {
-        return NextResponse.redirect(new URL("/auth/signin", nextUrl));
-      }
-  
-      const role = UserDatabase?.user?.role || "user";
-
-      if (authRoutes.includes(nextUrl.pathname)) {
-        if (role === "admin") {
-          return NextResponse.redirect(new URL("/admin", nextUrl));
-        } else {
-          return NextResponse.redirect(new URL("/user", nextUrl));
-        }
-      }
-      return true;
-    },
-  }
+ 
   
 });
