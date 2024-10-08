@@ -1,8 +1,7 @@
 
 import { auth } from "@/auth"
 import Navbar from "@/components/navbar";
-import { getUserData } from "@/actions/authActions";
-
+import { redirect } from "next/navigation"
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -13,8 +12,8 @@ export default async function RootLayout({
   // const UserData=await getUserData();
 
   if (!session) {
-    // Optionally, you can redirect the user or render a message
-    return <h1>You need to be logged in to access this page.</h1>;
+    redirect("/signin");
+    return null;
   }
 
   return (

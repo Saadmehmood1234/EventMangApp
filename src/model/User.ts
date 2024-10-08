@@ -23,10 +23,9 @@ const userSchema = new Schema({
   image:{
 type:String
   },
-  // isVerified: {
-  //   type: Boolean,
-  //   default: false,
-  // },
+  token: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
