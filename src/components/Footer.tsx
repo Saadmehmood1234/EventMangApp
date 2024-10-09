@@ -9,6 +9,9 @@ const Footer = () => {
         <p className="text-gray-400">
           &copy; {new Date().getFullYear()} Eventify. All Rights Reserved.
         </p>
+        <p className="text-gray-400">
+       Develop By  Saad Mehmood & Tahir Khan
+        </p>
       </div>
       <div className="flex space-x-6">
         <a href="#" aria-label="Facebook" className="hover:text-gray-400">

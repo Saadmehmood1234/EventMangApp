@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { handleSignOut } from "@/actions/authActions";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { getUserData } from "@/actions/authActions";
 
@@ -23,12 +24,12 @@ export default async function Navbar() {
     role: userData.role?.toString() || "",
   }));
   const showNavbar = formattedUser[0].role === "admin";
-  console.log(showNavbar)
+  console.log(showNavbar);
   //{showNavbar && <Navbar />}
   return (
-    <header className="w-full flex justify-between max-sm:h-24 items-center p-6 bg-slate-700 rounded-b-lg shadow-lg">
-      <nav className=" flex w-full max-md:mb-4` justify-between items-center">
-        <Link href="/" className="text-xl text-orange-600 font-bold">
+    <header className="w-full flex justify-between h-20  items-center px-6 bg-slate-700 rounded-b-lg shadow-lg">
+      <nav className=" flex w-full  justify-between items-center">
+        <Link href="/" className="text-xl text-gray-200 font-bold">
           Eventify
         </Link>
         {!session ? (
@@ -37,12 +38,22 @@ export default async function Navbar() {
           </Link>
         ) : (
           <form action={handleSignOut} className="flex gap-3">
-              {showNavbar && (
+            <div className="flex justify-center hover:text-gray-200 items-center text-white">
+              <Link href="/user/profile">
+               <div>
+               <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+               </div>
+              </Link>
+            </div>
+            {showNavbar && (
               <div className="flex gap-4 justify-center items-center">
                 <Link href="/admin" className="hover:underline text-gray-200">
-                Admin
-              </Link>
-                {/* <Link href="/user/profile">profile</Link> */}
+                  Admin
+                </Link>
+
                 {/* <Link
                 href="/user/history"
                 className="hover:underline text-gray-700"
@@ -59,7 +70,6 @@ export default async function Navbar() {
                 Sign Out
               </Button>
             </div>
-          
           </form>
         )}
       </nav>

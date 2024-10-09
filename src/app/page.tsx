@@ -1,33 +1,23 @@
-import React from 'react'
-import Link from 'next/link'
-import { auth } from '@/auth'
-const Home = async() => {
-  const session=await auth();
-  // console.log(session)
-  // const user=session?.user;
-  // console.log(user);
-// const cookees=cookies().get("authjs.csrf-token");
-// console.log(await decode({
-//   token:cookees?.value!,
-//   salt:cookees?.name!,
-//   secret:process.env.NEXTAUTH_SECRET!,
-// }))
+import Spline from "@splinetool/react-spline/next";
+import Link from "next/link";
+export default function Home() {
   return (
-    <div className='flex h-screen flex-col text-center bg-black justify-center items-center gap-6'>
-        <p className='max-sm:text-3xl text-5xl text-orange-600'>
-        Welcome To My New Website
-        </p>
-        <p className='text-2xl text-gray-300'>I just Removed the Login and SignUp </p>
-        <p className='text-green-600 text-lg '>I will add the Authentication and Authorization soon</p>
-        <div>
-          
-           <Link href={'/user'}>
-           <button className='p-2 text-gray-700 text-xl bg-gray-400 rounded-md hover:bg-white border-none outline-none'>Go to the Event Page</button>
-           </Link>
-           
+    <div className="h-[100vh] flex flex-col w-full ">
+      <header className="bg-black flex justify-between p-4 border-b-2 border-white">
+        <div className="text-white text-center ml-12 mt-4 text-3xl">
+          Welcome To Eventify
         </div>
+        <div className="flex justify-center items-center">
+          <Link href="/user">
+            <button className="py-2  w-20 hover:bg-gray-200 font-bold rounded-md bg-white text-black">
+              Visit
+            </button>
+          </Link>
+        </div>
+      </header>
+      <main className="w-full h-[90vh]">
+        <Spline scene="https://prod.spline.design/8k1242W0nu-JFfWL/scene.splinecode" />
+      </main>
     </div>
-  )
+  );
 }
-
-export default Home

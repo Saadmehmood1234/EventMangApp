@@ -8,17 +8,6 @@ export async function handleSignOut() {
   await signOut();
 }
 
-// export const getUserData = async () => {
-//   await connectToMongoDb();
-//    const session=await auth();
-//    const email=session?.user?.email;
-//   const Eventuser = await MyEventUser.findOne({ email });
-//   if(!Eventuser){
-//     return;
-//   }
-//   console.log("Saad",Eventuser);
-//   return Eventuser;
-// };
 
 export const getUserData = async () => {
   await connectToMongoDb();

@@ -9,13 +9,6 @@ import { handleSignOut } from "@/actions/authActions";
 import {
   HiChartPie,
   HiUser,
-  HiBookOpen,
-  HiCreditCard,
-  HiOutlineClipboardCheck,
-  HiOutlineDocumentText,
-  HiOutlineUserGroup,
-  HiViewBoards,
-  HiClipboardList,
   HiUserGroup,
 } from "react-icons/hi";
 import { RiMenu4Fill } from "react-icons/ri";
@@ -58,7 +51,7 @@ export default function AdminSidebar() {
       {showSidebar && (
         <div
           className={`bg-gray-950 max-md:${
-            showSidebar ? "block absolute z-[999]" : "hidden"
+            showSidebar ? "block absolute z-[10]" : "hidden"
           } flex flex-col md:relative`}
           style={{ width: "300px", height: "100vh" }}
         >
@@ -144,7 +137,7 @@ export default function AdminSidebar() {
               </div>
             </Link>
           </div>
-          <div className="flex items-center w-full justify-center flex-auto">
+          <div className="flex items-center z-[999] w-full justify-center flex-auto">
             <button
               onClick={() => setOpenModal(true)}
               className="w-[270px] items-center bg-blue-500 h-[40px] rounded-md text-white"
@@ -159,7 +152,7 @@ export default function AdminSidebar() {
             >
               <Modal.Header />
               <Modal.Body>
-                <div className="text-center">
+                <div className="text-center z-[999] ">
                   <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                     Are you sure you want to Logout?
                   </h3>

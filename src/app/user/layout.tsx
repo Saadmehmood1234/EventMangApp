@@ -19,14 +19,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
     <body>
-      <div className="flex justify-center items-center min-h-[300px]">
+      {/* <div className="flex justify-center items-center min-h-[300px]">
         <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
-      </div>
+      </div> */}
 
-      <div className="w-full absolute top-0">
         <Navbar />
-      </div>
-      <div className="absolute sm:top-[8%] top-[9%] w-full h-[90vh]">
+
+      <div className="w-full h-[90vh]">
      {children}
       </div>
     </body>

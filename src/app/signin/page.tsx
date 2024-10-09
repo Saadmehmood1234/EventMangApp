@@ -1,36 +1,15 @@
 
-//import LoginForm from "@/components/client/Form";
-// import Link from "next/link";
-// import { signIn } from "@/auth";
-// import { CredentialsSignin } from "next-auth";
-// const SignIn = () => {
-
-//   return (
-//     <div className="flex justify-center items-center w-full h-screen bg-slate-700">
-//       <div className="container p-6 max-w-md rounded-lg mx-4 bg-gray-950/90 border-2 border-gray-200">
-//         <h1 className="text-4xl font-extrabold text-gray-400  text-center">
-//           Sign In to <span className="text-gray-400">Eventify</span>
-//         </h1>
-//         <div className="sm:p-8 p-2 bg-gray-950/90 rounded-lg shadow-lg">
-//<LoginForm/>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SignIn;
-
 "use client"
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import React from "react";
-
-
+import { useState } from "react";
+import { Spinner } from "@nextui-org/react";
 const SignIn = () => {
+  const [loading,setLoading]=useState<boolean>(false);
   const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent default form submission
-
+     setLoading(true)
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email") as string | undefined;
     const password = formData.get("password") as string | undefined;
@@ -57,10 +36,14 @@ const SignIn = () => {
     } catch (error) {
       console.error("Login failed", error);
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex justify-center items-center w-full h-screen bg-slate-700">
+      
       <div className="container p-6 max-w-md rounded-lg mx-4 bg-gray-950/90 border-2 border-gray-200">
         <h1 className="text-4xl font-extrabold text-gray-400 text-center">
           Sign In to <span className="text-gray-400">Eventify</span>
@@ -99,8 +82,11 @@ const SignIn = () => {
               type="submit"
               className="w-full py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Sign In
+               {loading ?
+            <Spinner className="text-white"/>:  "Sign In"}
+            
             </button>
+           
           </form>
         </div>
       </div>

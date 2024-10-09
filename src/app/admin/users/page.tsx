@@ -85,15 +85,15 @@ const EventTable = () => {
               <th className="border border-gray-300 px-4 py-2">Actions</th>
             </tr>
           </thead>
-          <tbody className='text-center'>
+          <tbody >
             {users.map((user) => (
               <tr key={user.id}>
-                <td className="border border-gray-300 px-4 py-2">{user.name}</td>
+                <td className="border  border-gray-300 px-4 py-2">{user.name}</td>
                 {/* <td className="border border-gray-300 px-4 py-2">{new Date(event.startDate).toLocaleDateString()}</td>
                 <td className="border border-gray-300 px-4 py-2">{event.endDate ? new Date(event.endDate).toLocaleDateString() : '-'}</td> */}
                 <td className="border border-gray-300 px-4 py-2">{user.email}</td>
-                <td className="border border-gray-300 px-4 py-2">{user.role}</td>
-                <td className="border border-gray-300 px-4 py-2">
+                <td className="border border-gray-300 px-4 py-2 text-center">{user.role}</td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
                   <button
                     className="bg-red-500 text-white px-2 py-1 rounded"
                     onClick={() => handleDeleteClick(user.id)}
