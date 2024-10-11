@@ -66,9 +66,12 @@ export default async function Navbar() {
               </div>
             )}
             <div className="flex gap-4 justify-center items-center">
-              <Button variant="default" type="submit">
+              {/* <Button variant="default" type="submit">
                 Sign Out
-              </Button>
+              </Button> */}
+              <button  type="submit" className="bg-black text-gray-200 rounded px-4 py-2">
+                Sign Out
+              </button>
             </div>
           </form>
         )}

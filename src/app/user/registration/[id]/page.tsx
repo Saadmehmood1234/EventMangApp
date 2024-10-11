@@ -88,7 +88,7 @@
 //       setLoading(false);
 //     }
 //   };
-  
+
 //   const currentUser = users[0];
 //   useEffect(() => {
 //     fetchUsers();
@@ -109,7 +109,7 @@
 //       setFormErrors({});
 //       const data = await registration(inputs);
 //       if (data) {
-//         setIsModalOpen(true); 
+//         setIsModalOpen(true);
 //       }
 //     } catch (error) {
 //       if (error instanceof z.ZodError) {
@@ -153,7 +153,6 @@
 
 //     fetchEvent();
 //   }, [params.id]);
-
 
 //   if (loading) {
 //     return (
@@ -221,7 +220,7 @@
 //             />
 //             <span className="text-xl font-extrabold text-gray-200 text-center">
 //            {currentUser.name}
-        
+
 //             </span>
 //           </div>
 //         </div>
@@ -353,7 +352,7 @@
 //             className="col-span-2 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none "
 //           >
 //            { loading ? <Spinner className="text-white"/>:"Register"}
-          
+
 //           </button>
 //         </form>
 //       </div>
@@ -433,13 +432,16 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [event, setEvent] = useState<Event | null>(null);
+  const [apiResponseMessage, setApiResponseMessage] = useState<string | null>(
+    null
+  );
   const [users, setUsers] = useState<User[]>([]);
   const [inputs, setInputs] = useState({
-    fullname:"",
+    fullname: "",
     enrollment: "",
     semester: "",
     course: "",
-    email:"",
+    email: "",
     phone: "",
     eventId: params.id,
   });
@@ -455,13 +457,14 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
       }));
       console.log(formattedUsers);
       setUsers(formattedUsers);
-    } catch (error) {
-      console.error('Error fetching events:', error);
+    } catch (error: any) {
+      console.error("Error fetching events:", error);
+      setError(error);
     } finally {
       setLoading(false);
     }
   };
-  
+
   const currentUser = users[0];
   useEffect(() => {
     fetchUsers();
@@ -486,27 +489,47 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setFormErrors({});
     try {
       registrationSchema.parse(inputs);
       setFormErrors({});
       const data = await registration(inputs);
       if (data) {
-        setIsModalOpen(true); 
+        setApiResponseMessage("Registration successful!");
+        setIsModalOpen(true); // Open modal if needed
       }
-    } catch (error) {
+      else{
+        setApiResponseMessage("User Already Registered")
+      }
+      
+    } catch (error: any) {
       if (error instanceof z.ZodError) {
         const errors = error.errors.reduce(
           (acc, curr) => ({ ...acc, [curr.path[0]]: curr.message }),
           {}
         );
-        setFormErrors(errors);
+        setFormErrors(errors); 
+      } else if (error.response && error.response.data) {
+      const statusCode = error.response.status;
+      const apiErrors = error.response.data.errors || {};
+      setFormErrors(apiErrors); 
+      if (statusCode === 400) {
+        setApiResponseMessage("User already registered.");
+      } else {
+        setApiResponseMessage(
+          "An error occurred during registration."
+        );
       }
-      console.error("Registration failed:", error);
+      } else {
+        console.error("Unexpected Error:", error);
+        setApiResponseMessage(
+          "An unexpected error occurred. Please try again."
+        );
+      }
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -535,19 +558,14 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
 
     fetchEvent();
   }, [params.id]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[300px]">
-        <Spinner className="text-blue-700"/>
-      </div>
-    );
-  }
+console.log(apiResponseMessage)
 
   if (error || !event) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-b from-[#e6b0cd] to-[#9fc2f0]">
-        <div className="text-xl font-semibold">Event not found</div>
+      <div className="min-h-screen flex justify-center items-center bg-gray-900">
+        <div className="text-xl font-semibold text-gray-200">
+          Event not found
+        </div>
       </div>
     );
   }
@@ -598,32 +616,11 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
           <div className="mb-2 max-sm:col-span-2">
             <label className="block text-sm font-medium text-gray-300">
-              Enrollment No
-            </label>
-            <input
-              type="number"
-              value={inputs.enrollment}
-              onChange={(e) =>
-                setInputs({ ...inputs, enrollment: e.target.value })
-              }
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
-              placeholder="Enter your enrollment number"
-            />
-            {formErrors.enrollment && (
-              <p className="text-red-600 text-sm">{formErrors.enrollment}</p>
-            )}
-          </div>
-
-          <div className="mb-2 max-sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-300">
               Course
             </label>
             <select
               value={inputs.course}
-              onChange={(e) =>
-                setInputs({ ...inputs, course: e.target.value })
-              }
+              onChange={(e) => setInputs({ ...inputs, course: e.target.value })}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
             >
@@ -672,9 +669,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
             <input
               type="tel"
               value={inputs.phone}
-              onChange={(e) =>
-                setInputs({ ...inputs, phone: e.target.value })
-              }
+              onChange={(e) => setInputs({ ...inputs, phone: e.target.value })}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
               placeholder="Enter your phone number"
@@ -683,21 +678,50 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
               <p className="text-red-600 text-sm">{formErrors.phone}</p>
             )}
           </div>
-
+          <div className="mb-2 max-sm:col-span-2">
+            <label className="block text-sm font-medium text-gray-300">
+              Enrollment No
+            </label>
+            <input
+              type="number"
+              value={inputs.enrollment}
+              onChange={(e) =>
+                setInputs({ ...inputs, enrollment: e.target.value })
+              }
+              required
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
+              placeholder="Enter your enrollment number"
+            />
+            {formErrors.enrollment && (
+              <p className="text-red-600 text-sm">{formErrors.enrollment}</p>
+            )}
+          </div>
           <div className="col-span-2 mt-4">
+            {apiResponseMessage && (
+              <p
+                className={`text-sm ${
+                  apiResponseMessage.includes("successful")
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
+                {apiResponseMessage}
+              </p>
+            )}
             <button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               disabled={loading}
             >
               {loading ? "Submitting..." : "Register"}
+              {error}
             </button>
           </div>
         </form>
       </div>
 
       {isModalOpen && (
-          <SuccessModal
+        <SuccessModal
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);

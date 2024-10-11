@@ -1,4 +1,4 @@
-import EventRegistration from "@/model/Participants";
+import EventParticipant from "@/model/Participants";
 import { NextRequest, NextResponse } from "next/server";
 import connectToMongoDb from "@/utils/dbConnect";
 import Event from "@/model/Event";
@@ -11,24 +11,32 @@ export const POST = async (req: NextRequest) => {
   try {
     const { fullname, enrollment, semester, course, email, phone, eventId } = await req.json();
 
-    const existingUser = await EventRegistration.findOne({
-      $or: [
-        { email },
-        { enrollment },
-        { phone }
-      ],
-    });
-    
-    if (existingUser) {
+    const eventRegistered=await EventParticipant.findOne({eventId,email});
+    if(eventRegistered){
       return NextResponse.json(
         { error: "User with the same email, enrollment number, or phone already registered" },
         { status: 400 }
       );
     }
+
+    // const existingUser = await EventParticipant.findOne({
+    //   $or: [
+    //     { email },
+    //     { enrollment },
+    //     { phone }
+    //   ],
+    // });
+    
+    // if (existingUser &&  eventRegistered) {
+    //   return NextResponse.json(
+    //     { error: "User with the same email, enrollment number, or phone already registered" },
+    //     { status: 400 }
+    //   );
+    // }
     
     const ParticipantEvent = await Event.findById(eventId);
     const event=ParticipantEvent?.title
-    const newUser = new EventRegistration({
+    const newUser = new EventParticipant({
       fullname,
       enrollment,
       semester,

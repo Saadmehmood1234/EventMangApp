@@ -103,13 +103,13 @@ const CreateEvent = () => {
         )}
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 bg-white p-8 rounded-lg shadow-md border-2 border-black shadow-gray-400/50"
+          className="space-y-6  p-8 rounded-lg shadow-md border-2 border-white bg-gray-950/90 shadow-gray-400/50"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="title"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Title
               </label>
@@ -119,7 +119,7 @@ const CreateEvent = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
                 required
               />
                 {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
@@ -127,7 +127,7 @@ const CreateEvent = () => {
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="members"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Members
               </label>
@@ -137,7 +137,7 @@ const CreateEvent = () => {
                 name="members"
                 value={formData.members}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
                 required
               />
                 {errors.members && <p className="text-red-500 text-sm">{errors.members}</p>}
@@ -145,7 +145,7 @@ const CreateEvent = () => {
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="location"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Location
               </label>
@@ -155,7 +155,7 @@ const CreateEvent = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
                 required
               />
                 {errors.location && <p className="text-red-500 text-sm">{errors.location}</p>}
@@ -163,7 +163,7 @@ const CreateEvent = () => {
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="category"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Category
               </label>
@@ -173,36 +173,19 @@ const CreateEvent = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
                 required
               />
                 {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
             </div>
           </div>
 
-          <div>
-            <label
-              htmlFor="description"
-              className="block text-sm font-semibold text-gray-700 mb-2"
-            >
-              Description
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
-              rows={3}
-              required
-            />
-              {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
-          </div>
+        
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1">
               <label
                 htmlFor="startDate"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Start Date
               </label>
@@ -212,7 +195,7 @@ const CreateEvent = () => {
                 name="startDate"
                 value={formData.startDate}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
                 required
               />
                 {errors.startDate && <p className="text-red-500 text-sm">{errors.startDate}</p>}
@@ -220,7 +203,7 @@ const CreateEvent = () => {
             <div className="col-span-1">
               <label
                 htmlFor="endDate"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 End Date
               </label>
@@ -230,7 +213,7 @@ const CreateEvent = () => {
                 name="endDate"
                 value={formData.endDate}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
               />
                 {errors.endDate && <p className="text-red-500 text-sm">{errors.endDate}</p>}
             </div>
@@ -240,7 +223,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="organiser"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Organizer Name
               </label>
@@ -250,14 +233,14 @@ const CreateEvent = () => {
                 name="organiser"
                 value={formData.organiser}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
               />
                 {errors.organiser && <p className="text-red-500 text-sm">{errors.organiser}</p>}
             </div>
             <div>
               <label
                 htmlFor="sponsers"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-gray-300 mb-2"
               >
                 Sponsers
               </label>
@@ -267,15 +250,16 @@ const CreateEvent = () => {
                 name="sponsers"
                 value={formData.sponsers}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
               />
                 {errors.sponsers && <p className="text-red-500 text-sm">{errors.sponsers}</p>}
             </div>
           </div>
+          
           <div>
             <label
               htmlFor="imageUrl"
-              className="block text-sm font-semibold text-gray-700 mb-2"
+              className="block text-sm font-semibold text-gray-300 mb-2"
             >
               Image URL
             </label>
@@ -285,14 +269,14 @@ const CreateEvent = () => {
               name="imageUrl"
               value={formData.imageUrl}
               onChange={handleChange}
-              // className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+              className="px-4 py-2 text-ce rounded-full shadow-sm focus:outline-none text-white"
             />
               {/* {errors.imageUrl && <p className="text-red-500 text-sm">{errors.imageUrl}</p>} */}
           </div>
           <div>
             <label
               htmlFor="tags"
-              className="block text-sm font-semibold text-gray-700 mb-2"
+              className="block text-sm font-semibold text-gray-300 mb-2"
             >
               Tags (comma separated)
             </label>
@@ -302,17 +286,36 @@ const CreateEvent = () => {
               name="tags"
               value={formData.tags}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-200/60"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
             />
               {errors.tags && <p className="text-red-500 text-sm">{errors.tags}</p>}
           </div>
 
           <div>
+            <label
+              htmlFor="description"
+              className="block text-sm font-semibold text-gray-300 mb-2"
+            >
+              Description
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+              rows={3}
+              required
+            />
+              {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+          </div>
+          <div>
             <button
               type="submit"
-              className="inline-flex items-center px-6 py-3 bg-teal-600 border border-transparent rounded-lg font-semibold text-white shadow-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="inline-flex items-center px-6 py-3 bg-teal-600 border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
               Create Event
+              {successMessage}
             </button>
           </div>
         </form>

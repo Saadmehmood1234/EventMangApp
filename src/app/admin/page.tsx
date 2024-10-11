@@ -1,6 +1,3 @@
-
-
-
 "use client";
 import { IoIosDocument } from "react-icons/io";
 import { FaCircleArrowRight } from "react-icons/fa6";
@@ -32,13 +29,11 @@ interface User {
   image?: string;
 }
 
-
 const Dashboard = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [users, setUsers] = useState<User[]>([]);
-
 
   const fetchEvents = async () => {
     try {
@@ -78,25 +73,25 @@ const Dashboard = () => {
         role: userData.role?.toString() || "No Role", // Safe access to 'role'
         image: userData.image || "",
       }));
-      console.log(formattedUsers)
+      console.log(formattedUsers);
       setUsers(formattedUsers);
     } catch (error) {
-      console.error('Error fetching events:', error);
+      console.error("Error fetching events:", error);
     } finally {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchUsers();
   }, []);
 
   // Count categories and sponsors
-  const uniqueCategories = new Set(events.map(event => event.category));
-  const uniqueSponsors = new Set(events.map(event => event.sponsers));
+  const uniqueCategories = new Set(events.map((event) => event.category));
+  const uniqueSponsors = new Set(events.map((event) => event.sponsers));
   const totalUsers = users.length;
   const totalMembers = events.reduce((acc, event) => acc + event.members, 0);
-  const totalRegisteredUsers = events.length; 
+  const totalRegisteredUsers = events.length;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -119,39 +114,41 @@ const Dashboard = () => {
           </button>
         </Link>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4">
+      <div className="grid  max-sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 max-lg:grid-cols-2 gap-3 p-4">
         <div className="bg-blue-500 text-white p-6 rounded-lg shadow-md flex flex-col justify-between">
-       
           <div className="flex justify-between items-center">
-          
             <IoIosDocument className="h-16 w-16" />
-        
+
             <div>
-              <h2 className="text-2xl mb-2 flex justify-end">{uniqueCategories.size}</h2>
+              <h2 className="text-2xl mb-2 flex justify-end">
+                {uniqueCategories.size}
+              </h2>
               <p>Categories</p>
             </div>
           </div>
 
           <div className="bg-white text-blue-500 p-2 mt-4 rounded-lg flex justify-between items-center">
-          <Link href={"/admin/allevents"}>
-            <p className="text-sm">View Details</p>
-            <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-blue-700" />
+            <Link href={"/admin/allevents"}>
+              <p className="text-sm">View Details</p>
+              <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-blue-700" />
             </Link>
           </div>
         </div>
-       
+
         <div className="bg-green-500 text-white p-6 rounded-lg shadow-md flex flex-col justify-between">
           <div className="flex justify-between items-center">
             <CgDatabase className="h-16 w-16" />
             <div>
-              <h2 className="text-2xl mb-2 flex justify-end">{uniqueSponsors.size}</h2>
+              <h2 className="text-2xl mb-2 flex justify-end">
+                {uniqueSponsors.size}
+              </h2>
               <p>Sponsors</p>
             </div>
           </div>
           <div className="bg-white text-green-500 p-2 mt-4 rounded-lg flex justify-between items-center">
-          <Link href={"/admin/allevents"}>
-            <p className="text-sm">View Details</p>
-            <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-green-700" />
+            <Link href={"/admin/allevents"}>
+              <p className="text-sm">View Details</p>
+              <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-green-700" />
             </Link>
           </div>
         </div>
@@ -159,14 +156,16 @@ const Dashboard = () => {
           <div className="flex justify-between items-center">
             <IoCalendar className="h-16 w-16" />
             <div>
-              <h2 className="text-2xl mb-2 flex justify-end">{events.length}</h2>
+              <h2 className="text-2xl mb-2 flex justify-end">
+                {events.length}
+              </h2>
               <p>Total Events</p>
             </div>
           </div>
           <div className="bg-white text-orange-500 p-2 mt-4 rounded-lg flex justify-between items-center">
-          <Link href={"/admin/allevents"}>
-            <p className="text-sm">View Details</p>
-            <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-orange-700" />
+            <Link href={"/admin/allevents"}>
+              <p className="text-sm">View Details</p>
+              <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-orange-700" />
             </Link>
           </div>
         </div>
@@ -179,9 +178,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="bg-white text-orange-400 p-2 mt-4 rounded-lg flex justify-between items-center">
-          <Link href={"/admin/users"}>
-            <p className="text-sm">View Details</p>
-            <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-orange-600" />
+            <Link href={"/admin/users"}>
+              <p className="text-sm">View Details</p>
+              <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-orange-600" />
             </Link>
           </div>
         </div>
@@ -189,14 +188,16 @@ const Dashboard = () => {
           <div className="flex justify-between items-center">
             <BiSolidBook className="h-16 w-16" />
             <div>
-              <h2 className="text-2xl mb-2 flex justify-end">{totalRegisteredUsers}</h2>
+              <h2 className="text-2xl mb-2 flex justify-end">
+                {totalRegisteredUsers}
+              </h2>
               <p>Total Registrations</p>
             </div>
           </div>
           <div className="bg-white text-red-500 p-2 mt-4 rounded-lg flex justify-between items-center">
-          <Link href={"/admin"}>
-            <p className="text-sm">View Details</p>
-            <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-red-700" />
+            <Link href={"/admin"}>
+              <p className="text-sm">View Details</p>
+              <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-red-700" />
             </Link>
           </div>
         </div>
