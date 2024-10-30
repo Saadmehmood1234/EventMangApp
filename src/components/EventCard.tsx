@@ -41,16 +41,16 @@ const EventsCard: React.FC<EventsCardProps> = ({ events, searchQuery }) => {
 
   return (
     <div className="p-6">
-      <div className="mb-8 text-3xl font-semibold text-orange-600">
+      <div className="mb-8 text-3xl font-semibold text-[#e65577]">
         <h1>Upcoming Events</h1>
       </div>
       {filteredEvents.length > 0 ? (
         <div>
-          <div className="grid grid-cols-1   sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* <div className="flex justify-center items-center gap-10 flex-wrap max-w-6xl"> */}
             {visibleEvents.map((event) => (
               <Link key={event.id} href={`/user/events/${event.id}`}>
-                <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 cursor-pointer">
+                <div className="max-w-sm rounded overflow-hidden shadow-xl shadow-gray-400 bg-gradient-to-r hover:scale-[1.05] transition-all duration-700 from-blue-300 to-green-400 cursor-pointer">
                   <img
                     className="w-full h-48 object-cover"
                     src={event.image || "eventa1.jpg"}
@@ -70,7 +70,7 @@ const EventsCard: React.FC<EventsCardProps> = ({ events, searchQuery }) => {
                     </p>
                   </div>
                   <div className="px-6 pb-4">
-                    <button className="bg-green-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-green-700 transition duration-300 ease-in-out">
+                    <button className="bg-[#cc2b50] text-white px-4 py-2 rounded-full shadow-md hover:bg-[#e66180] transition duration-300 ease-in-out">
                       Join Event
                     </button>
                   </div>

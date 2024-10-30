@@ -113,7 +113,7 @@ const ParticipantPage = () => {
           <h1 className="text-3xl font-bold text-gray-200">Participants</h1>
           <div className="text-xl font-semibold text-gray-400">
             Total Participants:{" "}
-            <span className="text-blue-600">
+            <span className="text-[#cc2b50]">
               {
                 participants.filter((participant) =>
                   events.some((event) => event.id === participant.eventId)
@@ -124,7 +124,7 @@ const ParticipantPage = () => {
         </div>
       </div>
 
-      <div className="p-8 bg-slate-700 min-h-screen">
+      <div className="p-8 bg-gradient-to-r from-blue-200 to-green-200 min-h-screen">
         {events.map((event, index) => {
           // Filter participants for the current event
           const eventParticipants = participants.filter(
@@ -139,17 +139,17 @@ const ParticipantPage = () => {
           return (
             <div
               key={index}
-              className="mb-8 p-6 bg-gray-950/90 rounded-lg shadow-lg"
+              className="mb-8 p-6 bg-gray-950/90  hover:bg-slate-900 hover:scale-[1.01] transition-all duration-700 rounded-lg shadow-lg"
             >
               <div className="flex max-md:flex-col justify-between">
                 <div className="flex items-center mb-4">
-                  <h2 className="text-3xl max-lg:text-2xl font-semibold text-blue-600">
+                  <h2 className="text-3xl max-lg:text-2xl font-semibold text-[#cc2b50]">
                     {event.title}
                   </h2>
                 </div>
                 <div className="font-semibold text-gray-200 max-md:mb-4">
                   Participants:{" "}
-                  <span className="text-blue-600">
+                  <span className="text-[#cc2b50]">
                     {eventParticipants.length}
                   </span>
                 </div>
@@ -161,12 +161,12 @@ const ParticipantPage = () => {
                   displayedParticipants.map((participant, index) => (
                     <div key={participant.id} className="flex justify-between">
                       <Link href={`/admin/participants/${participant.id}`}>
-                        <li className="text-gray-200 hover:text-blue-500">
+                        <li className="text-gray-200 hover:text-[#cc4564]">
                           {participant.fullname}
                         </li>
                       </Link>
                       <Link href={`/admin/participants/${participant.id}`}>
-                        <BiSolidUserDetail className="text-gray-400 hover:text-blue-600" />
+                        <BiSolidUserDetail className="text-gray-400 hover:text-[#cc2b50]" />
                       </Link>
                     </div>
                   ))
@@ -182,7 +182,7 @@ const ParticipantPage = () => {
                 <div className="flex justify-start items-center">
                   <button
                     onClick={() => toggleExpand(event.id)}
-                    className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-150"
+                    className="mt-4 bg-[#db3d62] text-white px-4 py-2 rounded-lg hover:bg-[#cc2b50] transition duration-150"
                   >
                     {expandedEvents.has(event.id) ? "Show Less" : "View All"}
                   </button>

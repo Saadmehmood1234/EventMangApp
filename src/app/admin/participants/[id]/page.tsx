@@ -83,7 +83,7 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="p-8 bg-slate-700 h-[100vh] flex items-center justify-center">
+    <div className="p-8 bg-gradient-to-r from-blue-200 to-green-200 h-[100vh] flex items-center justify-center">
       <div className="w-full max-w-4xl bg-gray-950/90 rounded-xl shadow-lg overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <h1 className="text-4xl font-extrabold text-gray-300">
@@ -97,7 +97,7 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
         </div>
         <div className="p-6 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div className="bg-gray-50 hover:scale-[1.05] transition-all duration-700 p-4 rounded-lg shadow-sm">
               <h2 className="text-lg font-semibold text-gray-700 mb-2">
                 Details
               </h2>
@@ -111,7 +111,7 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
                 <strong>Course:</strong> {participant.course}
               </p>
             </div>
-            <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
+            <div className="bg-gray-50 hover:scale-[1.05] transition-all duration-700 p-4 rounded-lg shadow-sm">
               <h2 className="text-lg font-semibold text-gray-700 mb-2">
                 Contact Information
               </h2>

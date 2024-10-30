@@ -21,11 +21,11 @@ export const getUserData = async () => {
 
   const eventUser = await MyEventUser.findOne({ email });
   if (!eventUser) {
-    return []; // Return an empty array if no user found
+    return []; 
   }
 
   console.log("Fetched User Data:", eventUser);
 
-  // Return the user wrapped in an array to allow mapping
+
   return [eventUser];
 };

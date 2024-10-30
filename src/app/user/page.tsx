@@ -20,10 +20,10 @@ const Home = async () => {
   // console.log(user); // Optional: log user data for debugging
 
   return (
-    <div className="bg-black flex flex-col w-fullsm:h-[100vh] items-center text-gray-400">
+    <div className="bg-gradient-to-r from-blue-200 to-green-200 flex flex-col w-fullsm:h-[100vh] items-center text-gray-800">
       {/* <Header/> */}
       <main className="flex-grow flex flex-col justify-center items-center text-center mt-12 px-4">
-        <h1 className="sm:text-5xl text-4xl font-extrabold mb-8 text-gray-200">
+        <h1 className="sm:text-5xl text-4xl font-extrabold mb-8 text-gray-700">
           Discover and Participate in Exciting Events
         </h1>
         <div className="mb-12 sm:text-2xl text-xl max-w-3xl">

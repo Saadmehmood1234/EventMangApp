@@ -27,7 +27,7 @@ export default async function Navbar() {
   console.log(showNavbar);
   //{showNavbar && <Navbar />}
   return (
-    <header className="w-full flex justify-between h-20  items-center px-6 bg-slate-700 rounded-b-lg shadow-lg">
+    <header className="w-full flex justify-between h-20  items-center px-6 bg-[#377885] rounded-b-lg shadow-lg">
       <nav className=" flex w-full  justify-between items-center">
         <Link href="/" className="text-xl text-gray-200 font-bold">
           Eventify
@@ -69,7 +69,7 @@ export default async function Navbar() {
               {/* <Button variant="default" type="submit">
                 Sign Out
               </Button> */}
-              <button  type="submit" className="bg-black text-gray-200 rounded px-4 py-2">
+              <button  type="submit" className="bg-[#da496a] text-gray-200 rounded px-4 py-2">
                 Sign Out
               </button>
             </div>

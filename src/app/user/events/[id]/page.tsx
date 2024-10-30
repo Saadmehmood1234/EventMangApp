@@ -79,65 +79,65 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
     fetchEvent();
   }, [params.id]);
 
-  // if (loading) {
-  //   return (
-  //     <div className="flex justify-center items-center min-h-[300px]">
-  //       <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-200 to-green-200">
+        <div className="w-16 h-16 border-4 border-t-4 border-[#cc2b50] border-solid rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   if (error || !event) {
     return (
-      <div className="min-h-screen flex justify-center items-center text-gray-800">
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-200 to-green-200 text-gray-800">
         <div className="text-xl font-semibold">Event not found</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black flex justify-center items-center text-gray-200">
-      <div className="max-w-4xl w-full bg-gray-700/30 rounded-lg shadow-md sm:shadow-gray-100/40 p-8">
+    <div className="min-h-screen bg-gradient-to-r from-blue-200 to-green-200 flex justify-center items-center text-gray-800">
+      <div className="max-w-4xl w-full bg-gradient-to-r from-blue-300 to-green-300 rounded-lg shadow-md sm:shadow-gray-400 p-8">
         <img
           src={event.image || "/eventa1.jpg"} 
           alt={event.title}
           className="w-full h-64 object-cover rounded-lg mb-6"
         />
-        <h1 className="text-4xl font-bold text-gray-200 mb-4">{event.title}</h1>
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">{event.title}</h1>
         <div className="flex max-sm:flex-col mb-2">
-          <div className="flex items-center text-gray-200 mb-1 w-full sm:w-1/2">
+          <div className="flex items-center text-gray-800 mb-1 w-full sm:w-1/2">
             <FaUser className="mr-2 text-indigo-600" />
-            <span className="text-xl font-semibold text-gray-200">
+            <span className="text-xl font-semibold text-gray-800">
               {event.members} participants
             </span>
           </div>
-          <div className="flex items-center text-gray-200 mb-2 w-full sm:w-1/2">
+          <div className="flex items-center text-gray-800 mb-2 w-full sm:w-1/2">
             <MdCategory className="mr-2 text-indigo-600" />
-            <h2 className="text-xl font-semibold text-gray-200">Category:</h2>
-            <span className="ml-2 text-lg text-gray-200">{event.category}</span>
+            <h2 className="text-xl font-semibold text-gray-800">Category:</h2>
+            <span className="ml-2 text-lg text-gray-800">{event.category}</span>
           </div>
         </div>
 
         <div className="flex max-sm:flex-col  mb-2">
-          <div className="flex items-center text-gray-200 mb-2 sm:w-1/2 w-full ">
+          <div className="flex items-center text-gray-800 mb-2 sm:w-1/2 w-full ">
             <LiaPeopleCarrySolid className="mr-2 text-indigo-600" />
-            <h2 className="text-xl font-semibold text-gray-200">
+            <h2 className="text-xl font-semibold text-gray-800">
               Organised by:
             </h2>
-            <span className="ml-2 text-lg text-gray-200 ">
+            <span className="ml-2 text-lg text-gray-800 ">
               {event.organiser}
             </span>
           </div>
 
-          <div className="flex items-center text-gray-200 mb-2 sm:w-1/2 w-full">
+          <div className="flex items-center text-gray-800 mb-2 sm:w-1/2 w-full">
             <GiReceiveMoney className="mr-2 text-indigo-600" />
-            <h2 className="text-xl font-semibold text-gray-200">Sponsors:</h2>
-            <span className="ml-2 text-lg text-gray-200">
+            <h2 className="text-xl font-semibold text-gray-800">Sponsors:</h2>
+            <span className="ml-2 text-lg text-gray-800">
               {event.sponsers || "None"}
             </span>
           </div>
         </div>
-        <div className="flex max-sm:flex-col text-gray-200  mb-2">
+        <div className="flex max-sm:flex-col text-gray-800  mb-2">
           <div className="flex items-center sm:w-1/2 w-full  mb-2 mr-6 ">
             <FaCalendarAlt className="mr-2 text-indigo-600" />
             <span>
@@ -150,26 +150,26 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
           </div>
         </div>
 
-        <div className="flex items-center text-gray-200  mb-2 ">
+        <div className="flex items-center text-gray-800  mb-2 ">
           <FaTags className="mr-2 text-indigo-600" />
-          <h2 className="text-xl font-semibold text-gray-200 mb-2">Tags:</h2>
-          <span className="ml-2 text-lg text-gray-200">
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">Tags:</h2>
+          <span className="ml-2 text-lg text-gray-800">
             {event.tags?.join(", ") || "No tags"}
           </span>
         </div>
         <div className="mb-4">
-          <div className="flex items-center text-gray-200">
+          <div className="flex items-center text-gray-800">
             <MdOutlineDescription className="mr-2 text-indigo-600" />
-            <h2 className="text-xl font-semibold text-gray-200 mb-2">
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
               Description:
             </h2>
           </div>
-          <p className="text-lg text-gray-200">{event.description}</p>
+          <p className="text-lg text-gray-800">{event.description}</p>
         </div>
 
         <div className="text-center mt-4">
           <Link href={`/user/registration/${id}`}>
-            <button className="bg-orange-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-orange-700 transition duration-300 ease-in-out">
+            <button className="bg-[#cc2b50] text-white px-6 py-3 rounded-full shadow-md hover:bg-[#f55076] transition duration-300 ease-in-out">
               Register Now
             </button>
           </Link>

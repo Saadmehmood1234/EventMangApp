@@ -89,9 +89,9 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gradient-to-r from-blue-200 to-green-200">
       <div className=" text-center items-center pt-6  lg:px-8 px-3">
-        <h1 className="text-4xl font-bold text-gray-300 text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
+        <h1 className="text-4xl font-bold text-[#e04368] text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
           Create New Event
         </h1>
       </div>
@@ -119,7 +119,7 @@ const CreateEvent = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
                 required
               />
                 {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
@@ -137,7 +137,7 @@ const CreateEvent = () => {
                 name="members"
                 value={formData.members}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
                 required
               />
                 {errors.members && <p className="text-red-500 text-sm">{errors.members}</p>}
@@ -155,7 +155,7 @@ const CreateEvent = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
                 required
               />
                 {errors.location && <p className="text-red-500 text-sm">{errors.location}</p>}
@@ -173,7 +173,7 @@ const CreateEvent = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
                 required
               />
                 {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
@@ -195,7 +195,7 @@ const CreateEvent = () => {
                 name="startDate"
                 value={formData.startDate}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
                 required
               />
                 {errors.startDate && <p className="text-red-500 text-sm">{errors.startDate}</p>}
@@ -213,7 +213,7 @@ const CreateEvent = () => {
                 name="endDate"
                 value={formData.endDate}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
               />
                 {errors.endDate && <p className="text-red-500 text-sm">{errors.endDate}</p>}
             </div>
@@ -233,7 +233,7 @@ const CreateEvent = () => {
                 name="organiser"
                 value={formData.organiser}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
               />
                 {errors.organiser && <p className="text-red-500 text-sm">{errors.organiser}</p>}
             </div>
@@ -250,7 +250,7 @@ const CreateEvent = () => {
                 name="sponsers"
                 value={formData.sponsers}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
               />
                 {errors.sponsers && <p className="text-red-500 text-sm">{errors.sponsers}</p>}
             </div>
@@ -286,7 +286,7 @@ const CreateEvent = () => {
               name="tags"
               value={formData.tags}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
             />
               {errors.tags && <p className="text-red-500 text-sm">{errors.tags}</p>}
           </div>
@@ -303,7 +303,7 @@ const CreateEvent = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bggray-100"
+              className="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
               rows={3}
               required
             />
@@ -312,7 +312,7 @@ const CreateEvent = () => {
           <div>
             <button
               type="submit"
-              className="inline-flex items-center px-6 py-3 bg-teal-600 border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="inline-flex items-center px-6 py-3 bg-[#e04368] border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-[#bd3f5c] focus:outline-none focus:ring-2 focus:ring-[#e04368]"
             >
               Create Event
               {successMessage}

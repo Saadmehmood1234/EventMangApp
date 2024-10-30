@@ -43,16 +43,16 @@ const SignUp = () => {
   
 
   return (
-    <div className="flex justify-center items-center w-full bg-slate-700 h-screen">
-      <div className="container p-6 max-w-md rounded-lg mx-4 bg-gray-950/90 border-2 border-gray-200">
-        <h1 className="text-4xl font-extrabold text-gray-400 text-center">
-          Welcome to <span className="text-gray-400">Eventify</span>
+    <div className="flex justify-center items-center w-full  bg-gradient-to-r  from-blue-200 to-green-200 h-screen">
+      <div className="container p-6 max-w-md rounded-xl mx-4  bg-gradient-to-r  from-blue-400 to-green-400 shadow-xl shadow-gray-500">
+        <h1 className="text-4xl font-extrabold text-gray-700 text-center">
+          Welcome to <span className="text-gray-700">Eventify</span>
         </h1>
 
-        <div className="sm:p-8 p-2 bg-gray-950/90 rounded-lg shadow-lg">
+        <div className="sm:p-8 p-2 rounded-lg">
           <form action={signUp}>
             <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Name
               </label>
               <input
@@ -65,7 +65,7 @@ const SignUp = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Email
               </label>
               <input
@@ -78,7 +78,7 @@ const SignUp = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-semibold text-gray-300 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Password
               </label>
               <input
@@ -92,14 +92,14 @@ const SignUp = () => {
 
             <Link
               href="/signin"
-              className="text-sm hover:underline hover:opacity-70 text-gray-300 mb-6 block text-center"
+              className="text-sm hover:underline hover:opacity-70 text-gray-700 mb-6 block text-center"
             >
               Already have an account?
             </Link>
 
             <button
               type="submit"
-              className="w-full py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full py-3 rounded-lg font-semibold text-white bg-[#cc2b50] shadow-md hover:bg-[#e65a7b] focus:outline-none focus:ring-2 focus:ring-[#cc2b50]"
             >
               {/* {loading ?  <Spinner className="text-white"/>:  "Sign Up"} */}
               Sign Up
