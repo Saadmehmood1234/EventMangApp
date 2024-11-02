@@ -39,6 +39,12 @@ const eventSchema: Schema<IEvent> = new Schema({
   endDate: {
     type: Date,
     required: false,
+    validate: {
+      validator: function (this: IEvent, v: Date) {
+        return !v || v >= this.startDate; // Ensure endDate is greater than or equal to startDate
+      },
+      message: (props: { value: Date }) => `${props.value} must be greater than or equal to start date!`,
+    },
   },
   // time: {
   //   type: String, // Changed to string

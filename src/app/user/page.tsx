@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { getEvents } from "@/actions/data"; // Server-side data fetching
 import EventsSearchClient from "@/components/EventsSearchClient";
 import { redirect } from 'next/navigation'; // Correct import for redirect
+import ImageSlider from '@/components/ImageSlider';
 const Home = async () => {
   const session = await auth(); // Check user session first
   if (!session) {
@@ -26,6 +27,7 @@ const Home = async () => {
         <h1 className="sm:text-5xl text-4xl font-extrabold mb-8 text-gray-700">
           Discover and Participate in Exciting Events
         </h1>
+  
         <div className="mb-12 sm:text-2xl text-xl max-w-3xl">
           <p>
             Welcome to Eventify, your go-to platform for staying up-to-date with
@@ -33,6 +35,7 @@ const Home = async () => {
           </p>
         </div>
         <div className="w-full max-w-3xl mb-6"></div>
+        
         <div className="mt-5 flex justify-center items-center flex-wrap">
           <EventsSearchClient events={events} />
         </div>

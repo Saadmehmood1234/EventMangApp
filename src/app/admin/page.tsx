@@ -202,7 +202,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="bg-white text-red-500 p-2 mt-4 rounded-lg flex justify-between items-center">
-            <Link href={"/admin/users"}>
+            <Link href={"/admin/participants"}>
               <p className="text-sm">View Details</p>
               <FaCircleArrowRight className="h-6 w-6 cursor-pointer hover:text-red-700" />
             </Link>

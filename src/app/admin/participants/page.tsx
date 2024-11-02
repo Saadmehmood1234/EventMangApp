@@ -139,7 +139,7 @@ const ParticipantPage = () => {
           return (
             <div
               key={index}
-              className="mb-8 p-6 bg-gray-950/90  hover:bg-slate-900 hover:scale-[1.01] transition-all duration-700 rounded-lg shadow-lg"
+              className="mb-8 p-6 bg-gray-950/90 rounded-xl hover:bg-slate-900 hover:scale-[1.03] transition-all duration-500  shadow-lg"
             >
               <div className="flex max-md:flex-col justify-between">
                 <div className="flex items-center mb-4">

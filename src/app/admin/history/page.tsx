@@ -71,7 +71,7 @@ const EventHistory = () => {
             events.map((event) => (
               <div
                 key={event.id}
-                className="bg-gray-900/90  shadow-md p-6 transition-transform transform hover:bg-slate-900  hover:scale-105 duration-700"
+                className="bg-gray-900/90  shadow-md p-6 transition-transform transform hover:bg-slate-900 rounded-xl hover:scale-105 duration-700"
               >
                 <h2 className="text-2xl font-semibold text-[#cc2b50] mb-2">
                   {event.title}
@@ -100,7 +100,7 @@ const EventHistory = () => {
                 {/* Button to toggle additional details */}
                 <button
                   onClick={() => toggleShowMore(event.id)}
-                  className="mt-4 px-4 py-2 bg-[#cc2b50] text-white  hover:[#cc2b50] transition duration-200"
+                  className="mt-4 px-4 py-2 bg-[#cc2b50] text-white rounded-xl hover:[#cc2b50] transition duration-200"
                 >
                   {showMore[event.id] ? "Show Less" : "Show More"}
                 </button>

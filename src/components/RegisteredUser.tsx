@@ -25,7 +25,7 @@ interface Participant {
   event: string;
 }
 
-const RegisterUser = () => {
+const ParticipantPage = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [participants, setParticipants] = useState<Participant[]>([]);
@@ -107,20 +107,15 @@ const RegisterUser = () => {
 
   return (
     <>
-      {events.map((event, index) => {
-        const eventParticipants = participants.filter(
-          (participant) => participant.eventId === event.id
-        );
-
-        const shouldShowButton = eventParticipants.length > 5;
-        const displayedParticipants = expandedEvents.has(event.id)
-          ? eventParticipants
-          : eventParticipants.slice(0, 5);
-
-        return <span>{eventParticipants.length}</span>;
-      })}
+      <span>
+        {
+          participants.filter((participant) =>
+            events.some((event) => event.id === participant.eventId)
+          ).length
+        }
+      </span>
     </>
   );
 };
 
-export default RegisterUser;
+export default ParticipantPage;
