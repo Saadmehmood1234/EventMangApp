@@ -70,7 +70,7 @@ const EventTable = () => {
           <h2 className="text-3xl font-bold text-gray-800">All Users</h2>
         </div>
         {loading ? (
-          <p className="text-center text-gray-600">Loading events...</p>
+          <p className="text-center text-gray-600">Loading Users...</p>
         ) : (
           <div className="overflow-x-auto"> {/* Enable horizontal scrolling on small screens */}
             <table className="min-w-full border-collapse border border-gray-700 bg-white shadow-lg rounded-lg overflow-hidden">
