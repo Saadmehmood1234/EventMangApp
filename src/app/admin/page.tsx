@@ -111,13 +111,13 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-blue-200 to-green-200 sm:h-[100vh]">
-      <div className="flex justify-between pt-6 py-4 lg:px-8 px-3 bg-">
-        <h1 className="text-3xl font-bold text-[#e04368] lg:ml-0 max-sm:ml-8 sm:ml-8">
+    <div className="bg-white sm:h-[100vh]">
+      <div className="flex justify-between bg-indigo-500 pt-6 py-4 lg:px-8 px-3 bg-">
+        <h1 className="text-3xl font-bold text-gray-100 lg:ml-0 max-sm:ml-8 sm:ml-8">
           Dashboard
         </h1>
         <Link href={"/admin/createEvents"}>
-          <button className="bg-[#e45f7e] hover:bg-[#e04368] rounded-full px-4 py-2">
+          <button className="bg-indigo-600 hover:bg-indigo-400 rounded-full px-4 py-2">
             <span className="block lg:hidden text-xl font-bold text-white">+</span>
             <span className="hidden lg:block font-semibold text-white">+ Add Event</span>
           </button>

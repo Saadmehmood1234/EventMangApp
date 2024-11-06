@@ -13,12 +13,10 @@ import {
 } from "react-icons/hi";
 import { RiMenu4Fill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
-
 export default function AdminSidebar() {
   const pathname = usePathname();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [showSidebar, setShowSidebar] = useState<boolean>(true);
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -70,45 +68,41 @@ export default function AdminSidebar() {
               </div>
             </div>
           </div>
-
           <div className="flex flex-col  gap-2 flex-[3]">
             <Link href={"/admin"}>
               <div
-                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#cc2b50] hover:text-white pl-4 text-[20px] text-gray-200/80 ${
-                  pathname === "/admin" ? "bg-[#e04368] " : ""
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-indigo-400 hover:text-white pl-4 text-[20px] text-gray-200/80 ${
+                  pathname === "/admin" ? "bg-indigao-400 " : ""
                 }`}
               >
                 <HiChartPie />
                 <p className="">Dashboard</p>
               </div>
             </Link>
-
             <Link href={"/admin/users"}>
               <div
-                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#cc2b50] hover:text-white pl-4 text-[20px] text-gray-200/80 ${
-                  pathname === "/admin/users" ? "bg-[#e04368]" : ""
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-indigo-400 hover:text-white pl-4 text-[20px] text-gray-200/80 ${
+                  pathname === "/admin/users" ? "bg-indigao-400" : ""
                 }`}
               >
                 <HiUser />
                 <p className="text">Users</p>
               </div>
             </Link>
-
             <Link href={"/admin/participants"}>
               <div
-                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#cc2b50] hover:text-white pl-4 text-[20px] text-gray-200/80 ${
-                  pathname === "/admin/participants" ? "bg-[#e04368]" : ""
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-indigo-400 hover:text-white pl-4 text-[20px] text-gray-200/80 ${
+                  pathname === "/admin/participants" ? "bg-indigao-400" : ""
                 }`}
               >
                 <HiUserGroup />
                 <p className="text">Participants</p>
               </div>
             </Link>
-
             <Link href={"/admin/allevents"}>
               <div
-                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#cc2b50] hover:text-white pl-4 text-[20px] text-gray-200/80 ${
-                  pathname === "/admin/allevents" ? "bg-[#e04368]" : ""
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-indigo-400 hover:text-white pl-4 text-[20px] text-gray-200/80 ${
+                  pathname === "/admin/allevents" ? "bg-indigao-400" : ""
                 }`}
               >
                 <MdEvent />
@@ -117,19 +111,18 @@ export default function AdminSidebar() {
             </Link>
             <Link href={"/admin/history"}>
               <div
-                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#cc2b50] hover:text-white pl-4 text-[20px] text-gray-200/80 ${
-                  pathname === "/admin/history" ? "bg-[#e04368]" : ""
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-indigo-400 hover:text-white pl-4 text-[20px] text-gray-200/80 ${
+                  pathname === "/admin/history" ? "bg-indigao-400" : ""
                 }`}
               >
                 <RiCalendarScheduleFill />
                 <p className="text">Event History</p>
               </div>
             </Link>
-
             <Link href={"/admin/createEvents"}>
               <div
-                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-[#cc2b50] hover:text-white pl-4 text-[20px] text-gray-200/80 ${
-                  pathname === "/admin/createEvents" ? "bg-[#e04368]" : ""
+                className={`flex gap-3 h-[50px] rounded-md items-center cursor-pointer hover:bg-indigo-400 hover:text-white pl-4 text-[20px] text-gray-200/80 ${
+                  pathname === "/admin/createEvents" ? "bg-indigao-400" : ""
                 }`}
               >
                 <FaCalendarPlus />
@@ -140,7 +133,7 @@ export default function AdminSidebar() {
           <div className="flex items-center z-[999] w-full justify-center flex-auto">
             <button
               onClick={() => setOpenModal(true)}
-              className="w-[270px] items-center bg-[#cc2b50] h-[40px] rounded-md text-white"
+              className="w-[270px] items-center bg-indigo-400 h-[40px] rounded-md text-white"
             >
               Logout
             </button>
@@ -159,7 +152,7 @@ export default function AdminSidebar() {
                   <div className="flex justify-center gap-4">
                     <Button
                       color="blue"
-                      className="text-white bg-[#cc2b50]"
+                      className="text-white bg-indigo-400"
                       onClick={async () => {
                         await handleSignOut();
                         setOpenModal(false); // Close modal after signing out

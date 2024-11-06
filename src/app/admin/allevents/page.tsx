@@ -2,8 +2,7 @@
 import React, { useEffect, useState, useTransition } from "react";
 import { getEvents } from "@/actions/data";
 import { deleteEvent } from "@/actions/data";
-import Modal from "@/components/Modal"; // Import the Modal component
-
+import Modal from "@/components/Modal"; 
 interface Event {
   id: string;
   title: string;
@@ -14,7 +13,6 @@ interface Event {
   description: string;
   image?: string;
 }
-
 const EventTable = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
@@ -25,7 +23,6 @@ const EventTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [startDateFilter, setStartDateFilter] = useState<string>("");
   const [endDateFilter, setEndDateFilter] = useState<string>("");
-
   const fetchEvents = async () => {
     try {
       const fetchedEvents = await getEvents();
@@ -40,26 +37,22 @@ const EventTable = () => {
         location: eventData.location,
       }));
       setEvents(formattedEvents);
-      setFilteredEvents(formattedEvents); // Set initial filtered events
+      setFilteredEvents(formattedEvents); 
     } catch (error) {
       console.error("Error fetching events:", error);
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchEvents();
   }, []);
-
   const handleDeleteClick = (eventId: string) => {
     setEventIdToDelete(eventId);
     setModalOpen(true);
   };
-
   const handleDeleteConfirm = async () => {
     if (!eventIdToDelete) return;
-
     startTransition(async () => {
       try {
         await deleteEvent(eventIdToDelete);
@@ -68,25 +61,23 @@ const EventTable = () => {
         );
         setFilteredEvents((prevEvents) =>
           prevEvents.filter((event) => event.id !== eventIdToDelete)
-        ); // Update filtered events
+        );
         alert("Event deleted successfully!");
       } catch (error) {
         console.error("Error deleting event:", error);
         alert("Failed to delete event");
       } finally {
         setModalOpen(false);
-        setEventIdToDelete(null); // Reset the ID after deletion
+        setEventIdToDelete(null); 
       }
     });
   };
-
   const handleSearch = () => {
     const filtered = events.filter((event) =>
       event.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredEvents(filtered);
   };
-
   const handleDateFilter = () => {
     const filtered = events.filter((event) => {
       const eventStartDate = new Date(event.startDate);
@@ -103,23 +94,18 @@ const EventTable = () => {
     });
     setFilteredEvents(filtered);
   };
-
   useEffect(() => {
     handleSearch();
   }, [searchTerm]);
-
   useEffect(() => {
     handleDateFilter();
   }, [startDateFilter, endDateFilter]);
-
   return (
-    <div className="bg-gradient-to-r from-blue-200 to-green-200 min-h-screen">
+    <div className="bg-gray-200 min-h-screen">
       <div className="container mx-auto p-5">
-        <div className="flex justify-center items-center mb-5">
-          <h2 className="text-3xl font-bold text-gray-800">Event List</h2>
+        <div className="flex justify-center bg-indigo-500 p-4 items-center mb-5">
+          <h2 className="text-3xl font-bold text-gray-200">Event List</h2>
         </div>
-
-        {/* Search and Date Filters */}
           <div className="mb-5 flex max-lg:flex-col gap-5 justify-between">
             <input
               type="text"
@@ -143,24 +129,25 @@ const EventTable = () => {
               />
             </div>
         </div>
-
         {loading ? (
-          <p className="text-center text-gray-600">Loading events...</p>
+          <div className="flex justify-center items-center min-h-screen">
+          <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
+        </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300 bg-white shadow-lg rounded-lg overflow-hidden">
-              <thead className="bg-gray-800 text-white">
+              <thead className="bg-indigo-500 text-white">
                 <tr>
-                  <th className="border border-gray-300 px-4 py-2">Title</th>
-                  <th className="border border-gray-300 px-4 py-2">
+                  <th className="border border-gray-600 px-4 py-2">Title</th>
+                  <th className="border border-gray-600 px-4 py-2">
                     Start Date
                   </th>
-                  <th className="border border-gray-300 px-4 py-2">End Date</th>
-                  <th className="border border-gray-300 px-4 py-2">Location</th>
-                  <th className="border border-gray-300 px-4 py-2">
+                  <th className="border border-gray-600 px-4 py-2">End Date</th>
+                  <th className="border border-gray-600 px-4 py-2">Location</th>
+                  <th className="border border-gray-600 px-4 py-2">
                     Organiser
                   </th>
-                  <th className="border border-gray-300 px-4 py-2">Actions</th>
+                  <th className="border border-gray-600 px-4 py-2">Actions</th>
                 </tr>
               </thead>
               <tbody className="bg-gray-50 text-gray-800">
@@ -190,7 +177,7 @@ const EventTable = () => {
                       <button
                         className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 transition duration-200"
                         onClick={() => handleDeleteClick(event.id)}
-                        disabled={isPending} // Disable button during transition
+                        disabled={isPending} 
                       >
                         {isPending ? "Deleting..." : "Delete"}
                       </button>

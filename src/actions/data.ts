@@ -163,3 +163,29 @@ export const deleteUser = async (id: string) => {
     throw new Error(error.message || "Internal server error");
   }
 };
+
+// Update participant function
+export const updateParticipant = async (participantId: string, updatedData: Partial<typeof EventParticipant>) => {
+  try {
+    await connectToMongoDb(); // Connect to MongoDB
+
+    if (!participantId || participantId.length !== 24) {
+      throw new Error("Invalid participant ID"); // Validate ID length
+    }
+
+    // Update participant data
+    const updatedParticipant = await EventParticipant.findByIdAndUpdate(participantId, updatedData, { new: true });
+
+    if (!updatedParticipant) {
+      throw new Error("Participant not found"); // Handle case where participant is not found
+    }
+
+    console.log("Updated Participant:", updatedParticipant); // Log the updated participant data
+
+    // Return the updated participant object
+ 
+  } catch (error: any) {
+    console.error("Error updating participant:", error);
+    throw new Error(error.message || "Internal server error while updating participant");
+  }
+};

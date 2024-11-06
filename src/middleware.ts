@@ -8,8 +8,8 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 
 export async function middleware(req:any) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-console.log(token)
+ console.log(process.env.NEXTAUTH_SECRET );
+
 //   const protectedRoutes = ['/user', '/admin']; // Add any other protected routes
   // const protectedRoutes = ['/'];
   // // If the route is protected and there is no token, redirect to sign-in

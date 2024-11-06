@@ -20,15 +20,14 @@ const eventSchema = z
   })
   .refine((data) => new Date(data.startDate) >= new Date(), {
     message: "Start date must be today or in the future",
-    path: ["startDate"], // set the error path to the 'startDate' field
+    path: ["startDate"],
   })
   .refine((data) => new Date(data.endDate) >= new Date(data.startDate), {
     message: "End date must be greater than or equal to the start date",
-    path: ["endDate"], // set the error path to the 'endDate' field
+    path: ["endDate"], 
   });
 const CreateEvent = () => {
   const router = useRouter();
-
   const [formData, setFormData] = useState({
     title: "",
     members: "",
@@ -42,7 +41,6 @@ const CreateEvent = () => {
     sponsers: "",
     category: "",
   });
-
   const [errors, setErrors] = useState<
     Partial<Record<keyof typeof formData, string>>
   >({});
@@ -57,24 +55,21 @@ const CreateEvent = () => {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const validatedData = eventSchema.parse(formData);
       const tagsArray = validatedData.tags.split(",").map((tag) => tag.trim());
-
       const response = await axios.post("/api/events", {
         ...validatedData,
         tags: tagsArray,
       });
-
       if (response.status === 201) {
-        setSuccessMessage("Event created successfully!"); // Set success message
+        setSuccessMessage("Event created successfully!"); 
         setTimeout(() => {
-          setSuccessMessage(null); // Clear message after a few seconds
+          setSuccessMessage(null); 
           router.push("/admin");
-        }, 2000); // Adjust timeout as needed
+        }, 2000); 
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -90,11 +85,10 @@ const CreateEvent = () => {
       }
     }
   };
-
   return (
-    <div className="bg-gradient-to-r from-blue-200 to-green-200">
-      <div className=" text-center items-center pt-6  lg:px-8 px-3">
-        <h1 className="text-4xl font-bold text-[#e04368] text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
+    <div className="bg-gray-200">
+      <div className=" text-center items-center  bg-indigo-500 lg:px-8 p-4 px-3">
+        <h1 className="text-4xl font-bold text-white text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
           Create New Event
         </h1>
       </div>
@@ -106,13 +100,13 @@ const CreateEvent = () => {
         )}
         <form
           onSubmit={handleSubmit}
-          className="space-y-6  p-8 rounded-lg shadow-md border-2 border-white bg-gray-950/90 shadow-gray-400/50"
+          className="space-y-6 p-6 rounded-lg shadow-md border-2 border-white bg-white shadow-gray-400/50"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="title"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Title
               </label>
@@ -122,7 +116,7 @@ const CreateEvent = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
               {errors.title && (
@@ -132,7 +126,7 @@ const CreateEvent = () => {
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="members"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Members
               </label>
@@ -142,7 +136,7 @@ const CreateEvent = () => {
                 name="members"
                 value={formData.members}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
               {errors.members && (
@@ -152,7 +146,7 @@ const CreateEvent = () => {
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="location"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Location
               </label>
@@ -162,7 +156,7 @@ const CreateEvent = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
               {errors.location && (
@@ -172,7 +166,7 @@ const CreateEvent = () => {
             <div className="col-span-1 max-lg:col-span-2">
               <label
                 htmlFor="category"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Category
               </label>
@@ -182,7 +176,7 @@ const CreateEvent = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
               {errors.category && (
@@ -190,12 +184,11 @@ const CreateEvent = () => {
               )}
             </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="col-span-1">
               <label
                 htmlFor="startDate"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Start Date
               </label>
@@ -205,7 +198,7 @@ const CreateEvent = () => {
                 name="startDate"
                 value={formData.startDate}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 required
               />
               {errors.startDate && (
@@ -215,7 +208,7 @@ const CreateEvent = () => {
             <div className="col-span-1">
               <label
                 htmlFor="endDate"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 End Date
               </label>
@@ -225,7 +218,7 @@ const CreateEvent = () => {
                 name="endDate"
                 value={formData.endDate}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               {errors.endDate && (
                 <p className="text-red-500 text-sm">{errors.endDate}</p>
@@ -237,7 +230,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="organiser"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Organizer Name
               </label>
@@ -247,7 +240,7 @@ const CreateEvent = () => {
                 name="organiser"
                 value={formData.organiser}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               {errors.organiser && (
                 <p className="text-red-500 text-sm">{errors.organiser}</p>
@@ -256,7 +249,7 @@ const CreateEvent = () => {
             <div>
               <label
                 htmlFor="sponsers"
-                className="block text-sm font-semibold text-gray-300 mb-2"
+                className="block text-sm font-semibold text-gray-800 mb-2"
               >
                 Sponsers
               </label>
@@ -266,7 +259,7 @@ const CreateEvent = () => {
                 name="sponsers"
                 value={formData.sponsers}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               {errors.sponsers && (
                 <p className="text-red-500 text-sm">{errors.sponsers}</p>
@@ -277,7 +270,7 @@ const CreateEvent = () => {
           <div>
             <label
               htmlFor="imageUrl"
-              className="block text-sm font-semibold text-gray-300 mb-2"
+              className="block text-sm font-semibold text-gray-800 mb-2"
             >
               Image URL
             </label>
@@ -294,7 +287,7 @@ const CreateEvent = () => {
           <div>
             <label
               htmlFor="tags"
-              className="block text-sm font-semibold text-gray-300 mb-2"
+              className="block text-sm font-semibold text-gray-800 mb-2"
             >
               Tags (comma separated)
             </label>
@@ -304,7 +297,7 @@ const CreateEvent = () => {
               name="tags"
               value={formData.tags}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             {errors.tags && (
               <p className="text-red-500 text-sm">{errors.tags}</p>
@@ -314,7 +307,7 @@ const CreateEvent = () => {
           <div>
             <label
               htmlFor="description"
-              className="block text-sm font-semibold text-gray-300 mb-2"
+              className="block text-sm font-semibold text-gray-800 mb-2"
             >
               Description
             </label>
@@ -323,7 +316,7 @@ const CreateEvent = () => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+              className="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               rows={3}
               required
             />
@@ -331,11 +324,13 @@ const CreateEvent = () => {
               <p className="text-red-500 text-sm">{errors.description}</p>
             )}
           </div>
-          <div className="flex justify-center items-center text-green-500 text-xl">{successMessage}</div>
+          <div className="flex justify-center items-center text-green-500 text-xl">
+            {successMessage}
+          </div>
           <div>
             <button
               type="submit"
-              className="inline-flex items-center px-6 py-3 bg-[#e04368] border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-[#bd3f5c] focus:outline-none focus:ring-2 focus:ring-[#e04368]"
+              className="inline-flex items-center px-6 py-3 bg-indigo-500 border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             >
               Create Event
             </button>
@@ -466,7 +461,7 @@ export default CreateEvent;
 //   return (
 //     <div className="bg-gradient-to-r from-blue-200 to-green-200">
 //       <div className=" text-center items-center pt-6  lg:px-8 px-3">
-//         <h1 className="text-4xl font-bold text-[#e04368] text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
+//         <h1 className="text-4xl font-bold text-indigo-500text-center lg:ml-0 max-sm:ml-8 sm:ml-8">
 //           Create New Event
 //         </h1>
 //       </div>
@@ -484,7 +479,7 @@ export default CreateEvent;
 //             <div className="col-span-1 max-lg:col-span-2">
 //               <label
 //                 htmlFor="title"
-//                 className="block text-sm font-semibold text-gray-300 mb-2"
+//                 className="block text-sm font-semibold text-gray-800 mb-2"
 //               >
 //                 Title
 //               </label>
@@ -494,7 +489,7 @@ export default CreateEvent;
 //                 name="title"
 //                 value={formData.title}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
 //               {errors.title && (
@@ -514,7 +509,7 @@ export default CreateEvent;
 //                 name="members"
 //                 value={formData.members}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
 //               {errors.members && (
@@ -534,7 +529,7 @@ export default CreateEvent;
 //                 name="location"
 //                 value={formData.location}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
 //               {errors.location && (
@@ -554,7 +549,7 @@ export default CreateEvent;
 //                 name="category"
 //                 value={formData.category}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
 //               {errors.category && (
@@ -577,7 +572,7 @@ export default CreateEvent;
 //                 name="startDate"
 //                 value={formData.startDate}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
 //               {errors.startDate && (
@@ -597,7 +592,7 @@ export default CreateEvent;
 //                 name="endDate"
 //                 value={formData.endDate}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //               />
 //               {errors.endDate && (
 //                 <p className="text-red-500 text-sm">{errors.endDate}</p>
@@ -619,7 +614,7 @@ export default CreateEvent;
 //                 name="organiser"
 //                 value={formData.organiser}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //               />
 //               {errors.organiser && (
 //                 <p className="text-red-500 text-sm">{errors.organiser}</p>
@@ -638,7 +633,7 @@ export default CreateEvent;
 //                 name="sponsers"
 //                 value={formData.sponsers}
 //                 onChange={handleChange}
-//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//                 className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //               />
 //               {errors.sponsers && (
 //                 <p className="text-red-500 text-sm">{errors.sponsers}</p>
@@ -682,7 +677,7 @@ export default CreateEvent;
 //               name="tags"
 //               value={formData.tags}
 //               onChange={handleChange}
-//               className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//               className="w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //             />
 //             {errors.tags && (
 //               <p className="text-red-500 text-sm">{errors.tags}</p>
@@ -701,7 +696,7 @@ export default CreateEvent;
 //               name="description"
 //               value={formData.description}
 //               onChange={handleChange}
-//               className="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#e04368] bggray-100"
+//               className="w-full px-4 py-2 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //               rows={3}
 //               required
 //             />
@@ -715,7 +710,7 @@ export default CreateEvent;
 //           <div>
 //             <button
 //               type="submit"
-//               className="inline-flex items-center px-6 py-3 bg-[#e04368] border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-[#bd3f5c] focus:outline-none focus:ring-2 focus:ring-[#e04368]"
+//               className="inline-flex items-center px-6 py-3 bg-indigo-500border border-transparent rounded-full font-semibold text-white shadow-md hover:bg-[#bd3f5c] focus:outline-none focus:ring-2 focus:ring-[#e04368]"
 //             >
 //               Create Event
 
