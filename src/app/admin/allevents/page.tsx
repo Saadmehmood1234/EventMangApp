@@ -101,10 +101,10 @@ const EventTable = () => {
     handleDateFilter();
   }, [startDateFilter, endDateFilter]);
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 min-h-screen">
       <div className="container mx-auto p-5">
-        <div className="flex justify-center bg-indigo-500 p-4 items-center mb-5">
-          <h2 className="text-3xl font-bold text-gray-200">Event List</h2>
+        <div className="flex justify-center items-center mb-5">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-200">Event List</h2>
         </div>
           <div className="mb-5 flex max-lg:flex-col gap-5 justify-between">
             <input
@@ -112,20 +112,20 @@ const EventTable = () => {
               placeholder="Search by title"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="border border-gray-300 p-2 rounded"
+              className="border dark:bg-gray-900 dark:text-gray-200 bg-white text-gray-900 border-gray-300 p-2 rounded"
             />
             <div className="flex space-x-2 justify-center max-sm:justify-between items-center">
               <input
                 type="date"
                 value={startDateFilter}
                 onChange={(e) => setStartDateFilter(e.target.value)}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 p-2 rounded dark:bg-gray-900 dark:text-gray-200 bg-white text-gray-900"
               />
               <input
                 type="date"
                 value={endDateFilter}
                 onChange={(e) => setEndDateFilter(e.target.value)}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 p-2 rounded dark:bg-gray-900 dark:text-gray-200 bg-white text-gray-900"
               />
             </div>
         </div>

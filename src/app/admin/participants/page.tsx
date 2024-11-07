@@ -666,7 +666,7 @@ const ParticipantPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-50">
       {/* Header */}
       <div className="bg-indigo-500 text-white shadow-md p-6 rounded-b-lg">
         <div className="flex flex-col md:flex-row justify-between items-center">
@@ -696,14 +696,14 @@ const ParticipantPage = () => {
           return (
             <div
               key={event.id}
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="dark:bg-gradient-to-r from-gray-700 to-gray-600 bg-white p-6 rounded-lg shadow-lg hover:scale-[1.02] hover:shadow-2xl transition-all duration-300"
             >
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <h2 className="text-2xl font-semibold text-indigo-500">{event.title}</h2>
-                  <p className="text-gray-600">{event.organiser}</p>
+                  <p className="dark:text-gray-200 text-gray-600">{event.organiser}</p>
                 </div>
-                <div className="text-lg text-gray-500">
+                <div className="text-lg dark:text-gray-100 text-gray-500">
                   Participants:{" "}
                   <span className="font-semibold text-indigo-500">
                     {eventParticipants.length}
@@ -717,12 +717,12 @@ const ParticipantPage = () => {
                   displayedParticipants.map((participant) => (
                     <li key={participant.id} className="flex justify-between items-center">
                       <Link href={`/admin/participants/${participant.id}`}>
-                        <span className="text-gray-700 hover:text-indigo-600 transition-all duration-300">
+                        <span className="dark:text-gray-300 text-gray-700 hover:text-indigo-600 transition-all duration-300">
                           {participant.fullname}
                         </span>
                       </Link>
                       <Link href={`/admin/participants/${participant.id}`}>
-                        <BiSolidUserDetail className="text-gray-500 hover:text-indigo-600 transition-all duration-300" />
+                        <BiSolidUserDetail className="dark:text-white text-gray-500 hover:text-indigo-600 transition-all duration-300" />
                       </Link>
                     </li>
                   ))

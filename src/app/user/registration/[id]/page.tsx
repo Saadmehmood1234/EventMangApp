@@ -583,10 +583,10 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-900 p-6">
+    <div className="min-h-screen flex flex-col items-center bg-gray-200 dark:bg-gray-900 p-6">
       {/* Header */}
       <div className="text-center mb-6 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-indigo-400 text-center lg:text-left">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold dark:text-indigo-400 text-indigo-500 text-center lg:text-left">
           Event Registration Form
         </h1>
       </div>
@@ -636,7 +636,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
               value={inputs.course}
               onChange={(e) => setInputs({ ...inputs, course: e.target.value })}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
+              className="mt-1 block w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
             >
               <option value="">Select a course</option>
               <option value="BCA">BCA</option>
@@ -659,7 +659,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
                 setInputs({ ...inputs, semester: e.target.value })
               }
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
+              className="mt-1 block w-full px-3 py-2 border text-gray-900  border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
             >
               <option value="">Select semester</option>
               <option value="1">1st Semester</option>
@@ -681,11 +681,11 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
               Phone Number
             </label>
             <input
-              type="tel"
+              type="number"
               value={inputs.phone}
               onChange={(e) => setInputs({ ...inputs, phone: e.target.value })}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
+              className="mt-1 block w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
               placeholder="Enter your phone number"
             />
             {formErrors.phone && (
@@ -703,7 +703,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
                 setInputs({ ...inputs, enrollment: e.target.value })
               }
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
+              className="mt-1 block w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm bg-white"
               placeholder="Enter your enrollment number"
             />
             {formErrors.enrollment && (

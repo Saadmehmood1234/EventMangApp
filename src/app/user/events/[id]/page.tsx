@@ -280,20 +280,20 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex justify-center items-center text-gray-100">
-      <div className="max-w-4xl w-full bg-gray-700 rounded-lg shadow-md p-8">
+    <div className="min-h-screen bg-gray-200 text-gray-900 dark:bg-gradient-to-b from-gray-900 to-gray-800 flex justify-center items-center dark:text-gray-100">
+      <div className="max-w-4xl w-full bg-white dark:bg-gray-700 rounded-lg shadow-md p-8">
         <img
           src={event.image || "/eventa1.jpg"}
           alt={event.title}
           className="w-full h-64 object-cover rounded-lg mb-6 shadow-lg"
         />
-        <h1 className="text-4xl font-bold text-white mb-4">{event.title}</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{event.title}</h1>
         <div className="flex max-sm:flex-col mb-2">
-          <div className="flex items-center text-white mb-1 w-full sm:w-1/2">
+          <div className="flex items-center text-gray-900 dark:text-white mb-1 w-full sm:w-1/2">
             <FaUser className="mr-2 text-indigo-400" />
             <span className="text-xl font-semibold">{event.members} participants</span>
           </div>
-          <div className="flex items-center text-white mb-2 w-full sm:w-1/2">
+          <div className="flex items-center text-gray-900 dark:text-white mb-2 w-full sm:w-1/2">
             <MdCategory className="mr-2 text-indigo-400" />
             <h2 className="text-xl font-semibold">Category:</h2>
             <span className="ml-2 text-lg">{event.category}</span>
@@ -301,20 +301,20 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
         </div>
 
         <div className="flex max-sm:flex-col mb-2">
-          <div className="flex items-center text-white mb-2 sm:w-1/2 w-full ">
+          <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full ">
             <LiaPeopleCarrySolid className="mr-2 text-indigo-400" />
             <h2 className="text-xl font-semibold">Organised by:</h2>
             <span className="ml-2 text-lg">{event.organiser}</span>
           </div>
 
-          <div className="flex items-center text-white mb-2 sm:w-1/2 w-full">
+          <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full">
             <GiReceiveMoney className="mr-2 text-indigo-400" />
             <h2 className="text-xl font-semibold">Sponsors:</h2>
             <span className="ml-2 text-lg">{event.sponsers || "None"}</span>
           </div>
         </div>
 
-        <div className="flex max-sm:flex-col text-white mb-2">
+        <div className="flex max-sm:flex-col text-gray-900 dark:text-white mb-2">
           <div className="flex items-center sm:w-1/2 w-full mb-2 mr-6 ">
             <FaCalendarAlt className="mr-2 text-indigo-400" />
             <span>
@@ -327,14 +327,14 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
           </div>
         </div>
 
-        <div className="flex items-center text-white mb-2">
+        <div className="flex items-center text-gray-900 dark:text-white mb-2">
           <FaTags className="mr-2 text-indigo-400" />
           <h2 className="text-xl font-semibold mb-2">Tags:</h2>
           <span className="ml-2 text-lg">{event.tags?.join(", ") || "No tags"}</span>
         </div>
 
         <div className="mb-4">
-          <div className="flex items-center text-white">
+          <div className="flex items-center text-gray-900 dark:text-white">
             <MdOutlineDescription className="mr-2 text-indigo-400" />
             <h2 className="text-xl font-semibold mb-2">Description:</h2>
           </div>
@@ -343,7 +343,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
 
         <div className="text-center mt-4">
           <Link href={`/user/registration/${id}`}>
-            <button className="bg-indigo-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-indigo-400 transition duration-300 ease-in-out">
+            <button className="bg-indigo-500  text-white px-6 py-3 rounded-full shadow-md hover:bg-indigo-400 transition duration-300 ease-in-out">
               Register Now
             </button>
           </Link>

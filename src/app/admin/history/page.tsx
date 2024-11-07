@@ -269,9 +269,9 @@ const EventHistory = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-200 p-4">
+    <div className="min-h-screen dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 p-4">
       {/* Header Section */}
-      <div className="bg-indigo-500 p-4 mb-4 text-white">
+      <div className="mb-4 text-gray-900 dark:text-white">
       <h1 className="text-4xl font-semibold  text-center">
         Event History
       </h1>
@@ -283,36 +283,36 @@ const EventHistory = () => {
           <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Event Cards */}
           {events.length > 0 ? (
             events.map((event) => (
               <div
                 key={event.id}
-                className="bg-white shadow-md p-6 rounded-lg transition-transform transform hover:bg-gray-50 hover:scale-[1.02] duration-500"
+                className="dark:bg-gradient-to-r from-gray-700 to-gray-600 bg-white shadow-md p-6 rounded-lg transition-transform transform hover:bg-gray-50 hover:scale-[1.02] duration-500"
               >
                 {/* Event Title and Date */}
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                <h2 className="text-xl font-semibold dark:text-gray-300 text-gray-800 mb-2">
                   {event.title}
                 </h2>
-                <p className="text-gray-500 text-sm">Start Date</p>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="dark:text-gray-200 text-gray-500 text-sm">Start Date</p>
+                <p className="text-sm dark:text-gray-300 text-gray-600 mb-4">
                   {new Date(event.startDate).toDateString()}
                 </p>
-                <p className="text-gray-500 text-sm">End Date</p>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="dark:text-gray-200 text-gray-500 text-sm">End Date</p>
+                <p className="text-sm dark:text-gray-300 text-gray-600 mb-4">
                   {new Date(event.endDate).toDateString()}
                 </p>
 
                 {/* Show More Details */}
                 {showMore[event.id] && (
                   <>
-                    <p className="text-gray-500 text-sm">Description</p>
-                    <p className="text-gray-600 mb-4">{event.description}</p>
-                    <p className="text-gray-500 text-sm">Location</p>
-                    <p className="text-gray-600 mb-4">{event.location}</p>
-                    <p className="text-gray-500 text-sm">Organiser</p>
-                    <p className="text-gray-600 mb-4">{event.organiser}</p>
+                    <p className="dark:text-gray-200 text-gray-500 text-sm">Description</p>
+                    <p className="dark:text-gray-200 text-gray-600 mb-4">{event.description}</p>
+                    <p className="dark:text-gray-200 text-gray-500 text-sm">Location</p>
+                    <p className="dark:text-gray-200 text-gray-600 mb-4">{event.location}</p>
+                    <p className="dark:text-gray-200 text-gray-500 text-sm">Organiser</p>
+                    <p className="dark:text-gray-200 text-gray-600 mb-4">{event.organiser}</p>
                   </>
                 )}
 
@@ -326,7 +326,7 @@ const EventHistory = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-600 text-center">No past events found.</p>
+            <p className="dark:text-gray-200 text-gray-600 text-center">No past events found.</p>
           )}
         </div>
       )}

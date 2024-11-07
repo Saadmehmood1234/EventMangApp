@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { getAllUserData } from "@/actions/data";
 import RegisterUser from "@/components/RegisteredUser";
-
+import ThemeToggler from "../../components/ThemeToggler";
 interface Event {
   id: string;
   title: string;
@@ -96,9 +96,11 @@ const Dashboard = () => {
 
   // Get the current date
   const currentDate = new Date();
-  
+
   // Count total events whose end date is greater than or equal to the current date
-  const totalEvents = events.filter(event => new Date(event.endDate) >= currentDate).length;
+  const totalEvents = events.filter(
+    (event) => new Date(event.endDate) >= currentDate
+  ).length;
   const totalMembers = events.reduce((acc, event) => acc + event.members, 0);
   const totalRegisteredUsers = totalUsers;
 
@@ -111,17 +113,25 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-white sm:h-[100vh]">
+    <div className="dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-white sm:h-[100vh]">
       <div className="flex justify-between bg-indigo-500 pt-6 py-4 lg:px-8 px-3 bg-">
         <h1 className="text-3xl font-bold text-gray-100 lg:ml-0 max-sm:ml-8 sm:ml-8">
           Dashboard
         </h1>
-        <Link href={"/admin/createEvents"}>
-          <button className="bg-indigo-600 hover:bg-indigo-400 rounded-full px-4 py-2">
-            <span className="block lg:hidden text-xl font-bold text-white">+</span>
-            <span className="hidden lg:block font-semibold text-white">+ Add Event</span>
-          </button>
-        </Link>
+
+        <div className="flex gap-3 justify-center items-center">
+          <Link href={"/admin/createEvents"}>
+            <button className="bg-indigo-600 hover:bg-indigo-400 rounded-full px-4 py-2">
+              <span className="block lg:hidden text-xl font-bold text-white">
+                +
+              </span>
+              <span className="hidden lg:block font-semibold text-white">
+                + Add Event
+              </span>
+            </button>
+          </Link>
+          <ThemeToggler />
+        </div>
       </div>
       <div className="grid max-sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 max-lg:grid-cols-2 gap-3 p-4">
         <div className="bg-blue-500 text-white p-6 hover:scale-[1.02] transition-all duration-500 rounded-lg shadow-md flex flex-col justify-between">
@@ -163,9 +173,7 @@ const Dashboard = () => {
           <div className="flex justify-between items-center">
             <IoCalendar className="h-16 w-16" />
             <div>
-              <h2 className="text-2xl mb-2 flex justify-end">
-                {totalEvents}
-              </h2>
+              <h2 className="text-2xl mb-2 flex justify-end">{totalEvents}</h2>
               <p>Events</p>
             </div>
           </div>

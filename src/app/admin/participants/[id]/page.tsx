@@ -451,8 +451,8 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
   }
 
   return (
-    <div className="p-8 bg-gray-200 min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="p-8 dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-4xl dark:bg-gradient-to-r from-gray-700 to-gray-600 bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center">
             <img
@@ -460,33 +460,33 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
               alt="Profile"
               className="w-24 h-24 rounded-full mr-4"
             />
-            <h1 className="text-4xl font-extrabold text-gray-700">{participant.fullname}</h1>
+            <h1 className="text-4xl font-extrabold dark:text-gray-200 text-gray-700">{participant.fullname}</h1>
             
           </div>
         </div>
         <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-50 p-6 rounded-lg shadow-md">
-              <h2 className="text-lg font-semibold text-gray-700 mb-4">Personal Information</h2>
-              <p className="text-gray-600">
+            <div className="bg-gray-50 dark:bg-gradient-to-r from-gray-900 to-gray-800 p-6 rounded-lg shadow-md">
+              <h2 className="text-lg font-semibold dark:text-gray-300 text-gray-700 mb-4">Personal Information</h2>
+              <p className="dark:text-gray-300 text-gray-600">
                 <strong>Enrollment:</strong> {participant.enrollment}
               </p>
-              <p className="text-gray-600">
+              <p className="dark:text-gray-300 text-gray-600">
                 <strong>Semester:</strong> {participant.semester}
               </p>
-              <p className="text-gray-600">
+              <p className="dark:text-gray-300 text-gray-600">
                 <strong>Course:</strong> {participant.course}
               </p>
               {/* <p className="text-gray-600">
                 <strong>Gender:</strong> {participant.gender}
               </p> */}
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg shadow-md">
-              <h2 className="text-lg font-semibold text-gray-700 mb-4">Contact Information</h2>
-              <p className="text-gray-600">
+            <div className="bg-gray-50 dark:bg-gradient-to-r from-gray-900 to-gray-800 p-6 rounded-lg shadow-md">
+              <h2 className="text-lg font-semibold dark:text-gray-300 text-gray-700 mb-4">Contact Information</h2>
+              <p className="dark:text-gray-300 text-gray-600">
                 <strong>Phone:</strong> {participant.phone}
               </p>
-              <p className="text-gray-600">
+              <p className="dark:text-gray-300 text-gray-600">
                 <strong>Email:</strong> {participant.email}
               </p>
             </div>

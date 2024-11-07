@@ -56,10 +56,10 @@ const EventTable = () => {
     });
   };
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 min-h-screen">
       <div className="container mx-auto p-5">
-        <div className='flex justify-center bg-indigo-500 p-4 items-center mb-5'>
-          <h2 className="text-3xl font-bold text-gray-200">All Users</h2>
+        <div className='flex justify-center  items-center mb-5'>
+          <h2 className="text-3xl font-bold dark:text-gray-100 text-gray-900">All Users</h2>
         </div>
         {loading ? (
           <div className="flex justify-center items-center min-h-screen">
