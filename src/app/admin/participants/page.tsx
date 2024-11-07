@@ -569,14 +569,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { getParticipants, getEvents } from "@/actions/data";
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  image: string;
-  organiser: string;
-}
+import { Event } from "@/lib/types";
 interface Participant {
   id: string;
   fullname: string;
@@ -606,6 +599,8 @@ const ParticipantPage = () => {
           endDate: eventData.endDate?.toString() || "",
           image: eventData.image || "",
           organiser: eventData.organiser,
+          location:eventData.location,
+          description:eventData. description,
         }))
         .filter((event) => {
           const eventEndDate = new Date(event.endDate);

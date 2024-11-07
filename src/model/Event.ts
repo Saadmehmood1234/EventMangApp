@@ -1,4 +1,5 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
+import { string } from 'zod';
 
 export interface IEvent extends Document {
   title: string;
@@ -6,11 +7,11 @@ export interface IEvent extends Document {
   description: string;
   startDate: Date;
   endDate?: Date;
-  // time?: string; // 
+  time?: string; //
   category:string;
   location: string;
   organiser: string;
-  sponsers: string;
+  sponsors?: string[];
   attendees?: mongoose.Schema.Types.ObjectId[];
   imageUrl?: string;
   tags?: string[];
@@ -26,7 +27,7 @@ const eventSchema: Schema<IEvent> = new Schema({
   },
   members: {
     type: Number,
-    required: true,
+    // required: true,
   },
   description: {
     type: String,
@@ -46,10 +47,10 @@ const eventSchema: Schema<IEvent> = new Schema({
       message: (props: { value: Date }) => `${props.value} must be greater than or equal to start date!`,
     },
   },
-  // time: {
-  //   type: String, // Changed to string
-  //   required: false,
-  // },
+  time: {
+    type: String, // Changed to string
+    required: false,
+  },
   location: {
     type: String,
     required: true,
@@ -59,15 +60,16 @@ const eventSchema: Schema<IEvent> = new Schema({
     type: String,
     required: true,
   },
-  sponsers: {
-    type: String,
+  sponsors: {
+    type: [String],
+    default:[]
   },
-  attendees: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'EventParticipant',
-    },
-  ],
+  // attendees: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'EventParticipant',
+  //   },
+  // ],
   imageUrl: {
     type: String,
     default: '',

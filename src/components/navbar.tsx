@@ -6,6 +6,7 @@ import { handleSignOut } from "@/actions/authActions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getUserData } from "@/actions/authActions";
 import { RiLogoutCircleRLine } from "react-icons/ri";
+import {User} from "@/lib/types"
 import {
   Tooltip,
   TooltipContent,
@@ -13,13 +14,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  image: string;
-}
+
 export default async function Navbar() {
   const session = await auth();
   const fetchedUser = await getUserData();

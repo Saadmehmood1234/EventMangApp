@@ -216,17 +216,7 @@
 import React, { useState, useEffect } from "react";
 import { getEvents } from "@/actions/data";
 
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  image: string;
-  organiser: string;
-  location: string;
-}
-
+import { Event } from "@/lib/types";
 const EventHistory = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

@@ -102,14 +102,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  image: string;
-}
+import { Event } from "@/lib/types";
 
 interface EventsCardProps {
   events: Event[];
@@ -135,7 +128,7 @@ const EventsCard: React.FC<EventsCardProps> = ({ events, searchQuery }) => {
   const visibleEvents = showAll ? filteredEvents : filteredEvents.slice(0, 6);
 
   return (
-    <div className="p-8 dark:bg-gradient-to-b from-gray-800 to-gray-900 bg-white rounded-lg shadow-lg max-w-6xl mx-auto">
+    <div className="p-8 dark:bg-gradient-to-b from-gray-800 to-gray-900 bg-gray-200 rounded-lg shadow-lg max-w-6xl mx-auto">
       <div className="mb-8 text-3xl font-bold text-indigo-400 text-center">
         <h1>Upcoming Events</h1>
       </div>

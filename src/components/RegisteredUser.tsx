@@ -3,30 +3,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { getParticipants, getEvents } from "@/actions/data";
-
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  image: string;
-  organiser: string;
-}
-
-interface Participant {
-  id: string;
-  fullname: string;
-  enrollment: string;
-  semester: string;
-  course: string;
-  eventId: string;
-  phone: string;
-  email: string;
-  event: string;
-}
+import {Participant,RegisterEvent } from "@/lib/types"
 
 const ParticipantPage = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<RegisterEvent[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [expandedEvents, setExpandedEvents] = useState<Set<string>>(new Set());
@@ -36,7 +16,7 @@ const ParticipantPage = () => {
       const fetchedEvents = await getEvents();
       const currentDate = new Date(); // Get the current date
 
-      const formattedEvents: Event[] = fetchedEvents
+      const formattedEvents: RegisterEvent[] = fetchedEvents
         .map((eventData: any) => ({
           id: eventData.id as string,
           title: eventData.title,

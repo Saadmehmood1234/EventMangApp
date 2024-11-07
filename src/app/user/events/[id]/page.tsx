@@ -99,7 +99,7 @@
 //     <div className="min-h-screen bg-gradient-to-r from-blue-200 to-green-200 flex justify-center items-center text-gray-800">
 //       <div className="max-w-4xl w-full bg-gradient-to-r from-blue-300 to-green-300 rounded-lg shadow-md sm:shadow-gray-400 p-8">
 //         <img
-//           src={event.image || "/eventa1.jpg"} 
+//           src={event.image || "/eventa1.jpg"}
 //           alt={event.title}
 //           className="w-full h-64 object-cover rounded-lg mb-6"
 //         />
@@ -192,7 +192,7 @@ import { LiaPeopleCarrySolid } from "react-icons/lia";
 import { MdOutlineDescription } from "react-icons/md";
 import { FaTags } from "react-icons/fa";
 import { MdCategory } from "react-icons/md";
-
+import { Event } from "@/lib/types";
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -208,20 +208,7 @@ interface EventDetailProps {
   };
 }
 
-interface Event {
-  id: string;
-  title: string;
-  members: number;
-  description: string;
-  startDate: string;
-  endDate: string;
-  location: string;
-  organiser: string;
-  sponsers: string;
-  image?: string;
-  tags?: string[];
-  category: string;
-}
+
 
 const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
   const { id } = params;
@@ -246,7 +233,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
             description: participantData.description,
             location: participantData.location,
             members: participantData.members,
-            sponsers: participantData.sponsers,
+            sponsors: participantData.sponsors,
             category: participantData.category,
             tags: participantData.tags,
           };
@@ -287,11 +274,15 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
           alt={event.title}
           className="w-full h-64 object-cover rounded-lg mb-6 shadow-lg"
         />
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{event.title}</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          {event.title}
+        </h1>
         <div className="flex max-sm:flex-col mb-2">
           <div className="flex items-center text-gray-900 dark:text-white mb-1 w-full sm:w-1/2">
             <FaUser className="mr-2 text-indigo-400" />
-            <span className="text-xl font-semibold">{event.members} participants</span>
+            <span className="text-xl font-semibold">
+              {event.members} participants
+            </span>
           </div>
           <div className="flex items-center text-gray-900 dark:text-white mb-2 w-full sm:w-1/2">
             <MdCategory className="mr-2 text-indigo-400" />
@@ -310,7 +301,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
           <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full">
             <GiReceiveMoney className="mr-2 text-indigo-400" />
             <h2 className="text-xl font-semibold">Sponsors:</h2>
-            <span className="ml-2 text-lg">{event.sponsers || "None"}</span>
+            <span className="ml-2 text-lg">{event.sponsors || "None"}</span>
           </div>
         </div>
 
@@ -330,7 +321,9 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
         <div className="flex items-center text-gray-900 dark:text-white mb-2">
           <FaTags className="mr-2 text-indigo-400" />
           <h2 className="text-xl font-semibold mb-2">Tags:</h2>
-          <span className="ml-2 text-lg">{event.tags?.join(", ") || "No tags"}</span>
+          <span className="ml-2 text-lg">
+            {event.tags?.join(", ") || "No tags"}
+          </span>
         </div>
 
         <div className="mb-4">
@@ -354,4 +347,3 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
 };
 
 export default EventDetail;
-

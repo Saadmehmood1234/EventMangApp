@@ -19,7 +19,7 @@ export async function getEvents() {
       description: event.description,
       organiser: event.organiser,
       members: event.members,
-      sponsers: event.sponsers,
+      sponsors: event.sponsors,
       tags: event.tags,
       category: event.category,
     }));
@@ -52,7 +52,7 @@ export async function fetchEventById(eventId: string) {
       description: event.description,
       organiser: event.organiser,
       members: event.members,
-      sponsers: event.sponsers,
+      sponsors: event.sponsors,
       tags: event.tags,
       category: event.category,
     };

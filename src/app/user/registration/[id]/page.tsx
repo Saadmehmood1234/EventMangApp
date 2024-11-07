@@ -380,7 +380,7 @@ import { getUserData } from "@/actions/authActions";
 import useRegistration from "@/hooks/useRegistration";
 import { fetchEventById } from "@/actions/data"; // Import the server action
 import { Spinner } from "@nextui-org/react";
-
+import { User ,Event,InputState} from '@/lib/types';
 // Define your Zod schema
 const registrationSchema = z.object({
   enrollment: z
@@ -399,33 +399,7 @@ interface EventDetailProps {
   };
 }
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role?: string;
-  image?: string;
-}
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  image: string;
-  location: string;
-  description: string;
-  organiser: string;
-}
-interface InputState {
-  fullname: string;
-  enrollment: string;
-  semester: string;
-  course: string;
-  email: string;
-  phone: string;
-  image: string;
-  eventId: string;
-}
+
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -549,6 +523,10 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
             organiser: participantData.organiser,
             description: participantData.description,
             location: participantData.location,
+            sponsors:participantData.sponsors,
+            tags:participantData.tags,
+            category:participantData.category,
+            members:participantData.members
           };
           setEvent(formattedEvent);
         }

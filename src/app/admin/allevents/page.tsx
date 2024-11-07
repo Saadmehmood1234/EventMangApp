@@ -3,16 +3,7 @@ import React, { useEffect, useState, useTransition } from "react";
 import { getEvents } from "@/actions/data";
 import { deleteEvent } from "@/actions/data";
 import Modal from "@/components/Modal"; 
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate?: string;
-  location: string;
-  organiser: string;
-  description: string;
-  image?: string;
-}
+import {Event} from "@/lib/types";
 const EventTable = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);

@@ -259,14 +259,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
-interface Event {
-  id: string;
-  title: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  imageUrl: string;
-}
+import { Event } from "@/lib/types";
 
 const EventHistory = () => {
   const [events, setEvents] = useState<Event[]>([]);

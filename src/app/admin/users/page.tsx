@@ -2,13 +2,7 @@
 import React, { useEffect, useState, useTransition } from 'react';
 import { deleteUser, getAllUserData } from '@/actions/data';
 import Modal from '@/components/Modal';
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role?: string;
-  image?: string;
-}
+import { User } from '@/lib/types';
 const EventTable = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);

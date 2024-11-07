@@ -11,29 +11,13 @@ import { useState, useEffect } from "react";
 import { getAllUserData } from "@/actions/data";
 import RegisterUser from "@/components/RegisteredUser";
 import ThemeToggler from "../../components/ThemeToggler";
-interface Event {
-  id: string;
-  title: string;
-  members: number;
-  description: string;
-  startDate: string;
-  endDate: string;
-  location: string;
-  organiser: string;
-  sponsers: string;
-  category: string;
-}
+import { MainEvent,User } from "@/lib/types";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role?: string;
-  image?: string;
-}
+
+
 
 const Dashboard = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<MainEvent[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [users, setUsers] = useState<User[]>([]);
@@ -41,7 +25,7 @@ const Dashboard = () => {
   const fetchEvents = async () => {
     try {
       const fetchedEvents = await getEvents();
-      const formattedEvents: Event[] = fetchedEvents.map((eventData: any) => ({
+      const formattedEvents: MainEvent[] = fetchedEvents.map((eventData: any) => ({
         id: eventData.id as string,
         title: eventData.title,
         startDate: eventData.startDate.toString(),
@@ -50,7 +34,7 @@ const Dashboard = () => {
         description: eventData.description,
         location: eventData.location,
         members: eventData.members,
-        sponsers: eventData.sponsers,
+        sponsors: eventData.sponsors,
         category: eventData.category,
       }));
       setEvents(formattedEvents);
@@ -91,7 +75,7 @@ const Dashboard = () => {
 
   // Count categories and sponsors
   const uniqueCategories = new Set(events.map((event) => event.category));
-  const uniqueSponsors = new Set(events.map((event) => event.sponsers));
+  const uniqueSponsors = new Set(events.map((event) => event.sponsors));
   const totalUsers = users.length;
 
   // Get the current date

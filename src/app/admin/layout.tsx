@@ -6,12 +6,7 @@ import { auth } from "@/auth";
 import { getUserData } from "@/actions/authActions";
 import { redirect } from "next/navigation"; // Change the import
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
+import { User } from '@/lib/types';
 
 export default async function AdminLayout({
   children,

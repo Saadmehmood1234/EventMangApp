@@ -371,18 +371,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchParticipantsById, updateParticipant } from "@/actions/data";
-interface Participant {
-  id: string;
-  fullname: string;
-  enrollment: string;
-  semester: string;
-  course: string;
-  eventId: string;
-  phone: string;
-  email: string;
-  event: string | { name: string };
-  image?: string; // Add image as an optional property
-}
+import { Participant } from "@/lib/types";
 
 interface EventDetailProps {
   params: {
