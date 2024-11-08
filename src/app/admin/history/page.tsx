@@ -15,7 +15,7 @@
 // // const EventHistory = () => {
 // //   const [events, setEvents] = useState<Event[]>([]);
 // //   const [loading, setLoading] = useState<boolean>(true);
-// //   const [showMore, setShowMore] = useState<Record<string, boolean>>({}); 
+// //   const [showMore, setShowMore] = useState<Record<string, boolean>>({});
 // //   const fetchEvents = async () => {
 // //     try {
 // //       const eventData = await getEvents();
@@ -32,7 +32,7 @@
 // //           description: eventData.description,
 // //           location: eventData.location,
 // //         }))
-// //         .filter((event) => new Date(event.endDate) < currentDate); 
+// //         .filter((event) => new Date(event.endDate) < currentDate);
 // //       setEvents(formattedEvents);
 // //     } catch (err) {
 // //       console.error("Error fetching events:", err);
@@ -106,7 +106,6 @@
 
 // // export default EventHistory;
 
-
 // "use client";
 // import React, { useState, useEffect } from "react";
 // import { getEvents } from "@/actions/data";
@@ -139,7 +138,7 @@
 //           description: eventData.description,
 //           location: eventData.location,
 //         }))
-//         .filter((event) => new Date(event.endDate) < currentDate); 
+//         .filter((event) => new Date(event.endDate) < currentDate);
 //       setEvents(formattedEvents);
 //     } catch (err) {
 //       console.error("Error fetching events:", err);
@@ -216,16 +215,15 @@
 import React, { useState, useEffect } from "react";
 import { getEvents } from "@/actions/data";
 
-
-interface EventHistory{
+interface EventHistory {
   id: string;
-  title:string;
-  startDate:string;
+  title: string;
+  startDate: string;
   endDate: string;
-  image?:string;
+  image?: string;
   organiser: string;
-  description:string;
-  location: string
+  description: string;
+  location: string;
 }
 const EventHistory = () => {
   const [events, setEvents] = useState<EventHistory[]>([]);
@@ -248,7 +246,7 @@ const EventHistory = () => {
           description: eventData.description,
           location: eventData.location,
         }))
-        .filter((event) => new Date(event.endDate) < currentDate); 
+        .filter((event) => new Date(event.endDate) < currentDate);
       setEvents(formattedEvents);
     } catch (err) {
       console.error("Error fetching events:", err);
@@ -272,15 +270,13 @@ const EventHistory = () => {
     <div className="min-h-screen dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 p-4">
       {/* Header Section */}
       <div className="mb-4 text-gray-900 dark:text-white">
-      <h1 className="text-4xl font-semibold  text-center">
-        Event History
-      </h1>
+        <h1 className="text-4xl font-semibold  text-center">Event History</h1>
       </div>
 
       {/* Loading Spinner */}
       {loading ? (
         <div className="flex justify-center items-center min-h-[300px]">
-          <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-t-4 dark:bg-gray-900 bg-gray-200 border-indigo-500 border-solid rounded-full animate-spin"></div>
         </div>
       ) : (
         <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -295,11 +291,15 @@ const EventHistory = () => {
                 <h2 className="text-xl font-semibold dark:text-gray-300 text-gray-800 mb-2">
                   {event.title}
                 </h2>
-                <p className="dark:text-gray-200 text-gray-500 text-sm">Start Date</p>
+                <p className="dark:text-gray-200 text-gray-500 text-sm">
+                  Start Date
+                </p>
                 <p className="text-sm dark:text-gray-300 text-gray-600 mb-4">
                   {new Date(event.startDate).toDateString()}
                 </p>
-                <p className="dark:text-gray-200 text-gray-500 text-sm">End Date</p>
+                <p className="dark:text-gray-200 text-gray-500 text-sm">
+                  End Date
+                </p>
                 <p className="text-sm dark:text-gray-300 text-gray-600 mb-4">
                   {new Date(event.endDate).toDateString()}
                 </p>
@@ -307,12 +307,24 @@ const EventHistory = () => {
                 {/* Show More Details */}
                 {showMore[event.id] && (
                   <>
-                    <p className="dark:text-gray-200 text-gray-500 text-sm">Description</p>
-                    <p className="dark:text-gray-200 text-gray-600 mb-4">{event.description}</p>
-                    <p className="dark:text-gray-200 text-gray-500 text-sm">Location</p>
-                    <p className="dark:text-gray-200 text-gray-600 mb-4">{event.location}</p>
-                    <p className="dark:text-gray-200 text-gray-500 text-sm">Organiser</p>
-                    <p className="dark:text-gray-200 text-gray-600 mb-4">{event.organiser}</p>
+                    <p className="dark:text-gray-200 text-gray-500 text-sm">
+                      Description
+                    </p>
+                    <p className="dark:text-gray-200 text-gray-600 mb-4">
+                      {event.description}
+                    </p>
+                    <p className="dark:text-gray-200 text-gray-500 text-sm">
+                      Location
+                    </p>
+                    <p className="dark:text-gray-200 text-gray-600 mb-4">
+                      {event.location}
+                    </p>
+                    <p className="dark:text-gray-200 text-gray-500 text-sm">
+                      Organiser
+                    </p>
+                    <p className="dark:text-gray-200 text-gray-600 mb-4">
+                      {event.organiser}
+                    </p>
                   </>
                 )}
 
@@ -326,7 +338,9 @@ const EventHistory = () => {
               </div>
             ))
           ) : (
-            <p className="dark:text-gray-200 text-gray-600 text-center">No past events found.</p>
+            <p className="dark:text-gray-200 text-gray-600 text-center">
+              No past events found.
+            </p>
           )}
         </div>
       )}

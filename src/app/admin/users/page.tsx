@@ -57,7 +57,7 @@ const EventTable = () => {
         </div>
         {loading ? (
           <div className="flex justify-center items-center min-h-screen">
-          <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-t-4 dark:bg-gray-900 bg-gray-200 border-indigo-500 border-solid rounded-full animate-spin"></div>
         </div>
         ) : (
           <div className="overflow-x-auto"> {/* Enable horizontal scrolling on small screens */}

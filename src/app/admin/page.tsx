@@ -11,10 +11,7 @@ import { useState, useEffect } from "react";
 import { getAllUserData } from "@/actions/data";
 import RegisterUser from "@/components/RegisteredUser";
 import ThemeToggler from "../../components/ThemeToggler";
-import { MainEvent,User } from "@/lib/types";
-
-
-
+import { MainEvent, User } from "@/lib/types";
 
 const Dashboard = () => {
   const [events, setEvents] = useState<MainEvent[]>([]);
@@ -25,18 +22,20 @@ const Dashboard = () => {
   const fetchEvents = async () => {
     try {
       const fetchedEvents = await getEvents();
-      const formattedEvents: MainEvent[] = fetchedEvents.map((eventData: any) => ({
-        id: eventData.id as string,
-        title: eventData.title,
-        startDate: eventData.startDate.toString(),
-        endDate: eventData.endDate?.toString() || "",
-        organiser: eventData.organiser,
-        description: eventData.description,
-        location: eventData.location,
-        members: eventData.members,
-        sponsors: eventData.sponsors,
-        category: eventData.category,
-      }));
+      const formattedEvents: MainEvent[] = fetchedEvents.map(
+        (eventData: any) => ({
+          id: eventData.id as string,
+          title: eventData.title,
+          startDate: eventData.startDate.toString(),
+          endDate: eventData.endDate?.toString() || "",
+          organiser: eventData.organiser,
+          description: eventData.description,
+          location: eventData.location,
+          members: eventData.members,
+          sponsors: eventData.sponsors,
+          category: eventData.category,
+        })
+      );
       setEvents(formattedEvents);
     } catch (error) {
       console.error("Error fetching events:", error);

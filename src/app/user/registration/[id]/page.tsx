@@ -604,7 +604,6 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
             </span>
           </div>
         </div>
-
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
           <div className="mb-2 max-sm:col-span-2">
             <label className="block text-sm font-medium text-gray-700">
@@ -718,7 +717,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);
-            router.push("/user"); // Redirect after closing the modal
+            router.push("/user"); 
           }}
         />
       )}

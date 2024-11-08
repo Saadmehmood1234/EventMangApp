@@ -31,6 +31,10 @@ const userSchema = new Schema({
     enum: ["male", "female", "other", "prefer not to say"],
     default: "prefer not to say",
   },
+  phone:{
+    type: String,
+    default: null,
+  },
   token: {
     type: String,
     default: null,

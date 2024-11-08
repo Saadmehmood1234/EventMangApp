@@ -418,14 +418,14 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen ">
-        <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-t-4 dark:bg-gray-900 bg-gray-200 border-indigo-500 border-solid rounded-full animate-spin"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-200 text-red-500">
+      <div className="flex items-center justify-center min-h-screen dark:bg-gray-900 bg-gray-200 text-red-500">
         {error}
       </div>
     );
@@ -433,12 +433,11 @@ const ParticipantDetailPage: React.FC<EventDetailProps> = ({ params }) => {
 
   if (!participant) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-200 text-red-500">
+      <div className="flex items-center justify-center min-h-screen dark:bg-gray-900 bg-gray-200 text-red-500">
         No participant found
       </div>
     );
   }
-
   return (
     <div className="p-8 dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 min-h-screen flex items-center justify-center">
       <div className="w-full max-w-4xl dark:bg-gradient-to-r from-gray-700 to-gray-600 bg-white rounded-xl shadow-lg overflow-hidden">
