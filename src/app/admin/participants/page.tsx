@@ -569,7 +569,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { getParticipants, getEvents } from "@/actions/data";
-import { Event } from "@/lib/types";
+interface Event{
+  id: string;
+  title:string;
+  startDate:string;
+  endDate: string;
+  image?:string;
+  organiser: string;
+  description:string;
+  location: string
+}
 interface Participant {
   id: string;
   fullname: string;
