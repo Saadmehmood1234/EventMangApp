@@ -3,10 +3,20 @@ import React, { useEffect, useState, useTransition } from "react";
 import { getEvents } from "@/actions/data";
 import { deleteEvent } from "@/actions/data";
 import Modal from "@/components/Modal"; 
-import {Event} from "@/lib/types";
+
+interface AllEvent{
+  id: string;
+  title:string;
+  startDate:string;
+  endDate: string;
+  image?:string;
+  organiser: string;
+  description:string;
+  location: string
+}
 const EventTable = () => {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<AllEvent[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<AllEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,7 +27,7 @@ const EventTable = () => {
   const fetchEvents = async () => {
     try {
       const fetchedEvents = await getEvents();
-      const formattedEvents: Event[] = fetchedEvents.map((eventData: any) => ({
+      const formattedEvents: AllEvent[] = fetchedEvents.map((eventData: any) => ({
         id: eventData.id as string,
         title: eventData.title,
         startDate: eventData.startDate.toString(),

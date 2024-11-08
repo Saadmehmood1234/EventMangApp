@@ -216,9 +216,19 @@
 import React, { useState, useEffect } from "react";
 import { getEvents } from "@/actions/data";
 
-import { Event } from "@/lib/types";
+
+interface EventHistory{
+  id: string;
+  title:string;
+  startDate:string;
+  endDate: string;
+  image?:string;
+  organiser: string;
+  description:string;
+  location: string
+}
 const EventHistory = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventHistory[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [showMore, setShowMore] = useState<Record<string, boolean>>({});
 
@@ -227,7 +237,7 @@ const EventHistory = () => {
       const eventData = await getEvents();
       const currentDate = new Date();
 
-      const formattedEvents: Event[] = eventData
+      const formattedEvents: EventHistory[] = eventData
         .map((eventData: any) => ({
           id: eventData.id as string,
           title: eventData.title,
