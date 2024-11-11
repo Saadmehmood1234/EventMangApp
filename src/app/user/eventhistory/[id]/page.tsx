@@ -29,11 +29,9 @@ interface EventDetailProps {
 
 const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
   const { id } = params;
-
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -151,13 +149,6 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
           <p className="text-lg">{event.description}</p>
         </div>
 
-        <div className="text-center mt-4">
-          <Link href={`/user/registration/${id}`}>
-            <button className="bg-indigo-500  text-white px-6 py-3 rounded-full shadow-md hover:bg-indigo-400 transition duration-300 ease-in-out">
-              Register Now
-            </button>
-          </Link>
-        </div>
       </div>
     </div>
   );

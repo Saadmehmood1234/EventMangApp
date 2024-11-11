@@ -76,6 +76,7 @@ import { redirect } from "next/navigation";
 import ImageSlider from "@/components/ImageSlider";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Link from "next/link";
+import FAQAccordin from "@/components/Accordian";
 
 const Home = async () => {
   const session = await auth();
@@ -89,7 +90,7 @@ const Home = async () => {
     <div className="w-full  flex flex-col dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 dark:bg items-center dark:text-gray-100 min-h-screen">
       <main className="flex-grow flex flex-col w-full items-center text-center mt-12 px-4">
         <div className="flex justify-center items-center w-full">
-          <section className="max-w-5xl mb-12  flex justify-center items-center">
+          <section className="w-full mb-12  flex justify-center items-center">
             <ImageSlider />
           </section>
         </div>
@@ -111,12 +112,12 @@ const Home = async () => {
         <div className="flex justify-around max-lg:flex-col items-center w-full max-w-4xl mt-12 gap-4">
           {[
             { text: "Event History", href: "/user/history" },
-            { text: "Your Participants", href: "/user/your-participants" },
-            { text: "Your Events", href: "/user/events" },
+            { text: "Your Participantions", href: "/user" },
+            { text: "Upcoming Features", href: "/user/features" },
           ].map(({ text, href }, idx) => (
             <div
               key={idx}
-              className="flex justify-center items-center bg-white dark:bg-gray-700 rounded-lg shadow-lg w-80 h-48 p-4"
+              className="flex justify-center items-center bg-gray-100 dark:bg-gray-700 rounded-lg shadow-lg w-80 h-48 p-4"
             >
               <Link href={href}>
                 <button className="relative py-3 px-6 hover:scale-[1.05] rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-all duration-500 ease-in-out group flex items-center justify-center">
@@ -128,6 +129,13 @@ const Home = async () => {
           ))}
         </div>
         <div className="w-full max-w-4xl h-0.5 bg-indigo-500 shadow-md mt-12"></div>
+      
+        <div className="flex mt-12 flex-col gap-4 justify-center items-center w-full">
+        <div className="flex w-full max-w-7xl text-3xl justify-start">
+        <p> FAQs</p>
+        </div>
+          <FAQAccordin/>
+        </div>
       </main>
       <Footer />
     </div>

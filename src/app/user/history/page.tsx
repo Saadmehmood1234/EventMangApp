@@ -1,348 +1,119 @@
-// // // "use client"
-// // // import React, { useState, useEffect } from "react";
-// // // import { FaSearch } from "react-icons/fa";
-// // // import Link from "next/link";
-// // // import Event from '../../../models/Event';
-// // // interface Event {
-// // //    id: string;
-// // //   title: string;
-// // //   startDate: string;
-// // //   endDate: string;
-// // //   description:string;
-// // //   image: string;
-// // // }
-// // // const EventHistory = () => {
-
-// // //   const [events, setEvents] = useState<Event[]>([]);
-// // // events.map((event)=>console.log(event))
-// // //   useEffect(() => {
-// // //     const fetchEvents = async () => {
-// // //       try {
-// // //         const response = await fetch("/api/getevent");
-// // //         if (!response.ok) {
-// // //           throw new Error("Network response was not ok");
-// // //         }
-// // //         const data = await response.json();
-// // //         setEvents(data.event);
-// // //         console.log(events)
-
-// // //       } catch (error) {
-// // //         console.error("Error fetching events:", error);
-// // //       }
-// // //     };
-
-// // //     fetchEvents();
-// // //   }, []);
-// // //   return (
-// // //     <div className="min-h-screen bg-gray-100 p-4 lg:p-8">
-// // //       <h1 className="text-4xl font-bold text-purple-600 mb-8 text-center">
-// // //         Event History
-// // //       </h1>
-
-// // //       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-// // //         {events.map((event, index) => (
-// // //           <div
-// // //             key={index}
-// // //             className="bg-white rounded-lg shadow-md p-6 transition-transform transform hover:scale-105"
-// // //           >
-// // //             <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-// // //               {event.title}
-// // //             </h2>
-// // //             <p>Start date</p>
-// // //             <p className="text-sm text-gray-500 mb-4">
-// // //               {new Date(event.startDate).toDateString()}
-// // //             </p>
-// // //             <p>{event.id}</p>
-// // //             <p>End date</p>
-// // //             <p className="text-sm text-gray-500 mb-4">
-// // //               {new Date(event.endDate).toDateString()}
-// // //             </p>
-// // //             <p className="text-gray-600 mb-4">{event.description}</p>
-// // //             <div className="text-gray-600">
-// // //               {/* <p className="font-semibold">
-// // //                 Participants:{" "}
-// // //                 <span className="text-purple-600">{event.participants}</span>
-// // //               </p> */}
-// // //               <p className="font-semibold">
-// // //                 {/* Winner: <span className="text-purple-600">{event.winner}</span> */}
-// // //               </p>
-// // //             </div>
-// // //           </div>
-// // //         ))}
-// // //       </div>
-// // //     </div>
-// // //   );
-// // // };
-
-// // // export default EventHistory;
-
-// // "use client"
-// // import React, { useState, useEffect } from "react";
-// // import Link from "next/link";
-
-// // interface Event {
-// //   id: string;
-// //   title: string;
-// //   startDate: string;
-// //   endDate: string;
-// //   description: string;
-// //   imageUrl: string;
-// // }
-
-// // const EventHistory = () => {
-// //   const [events, setEvents] = useState<Event[]>([]);
-// //   const [loading, setLoading] = useState<boolean>(true); // Add loading state
-
-// //   useEffect(() => {
-// //     const fetchEvents = async () => {
-// //       try {
-// //         setLoading(true); // Set loading to true before fetching
-// //         const response = await fetch("/api/getevent");
-// //         if (!response.ok) {
-// //           throw new Error("Network response was not ok");
-// //         }
-// //         const data = await response.json();
-// //         const formattedEvents = data.event.map((event: any) => ({
-// //           id: event._id,
-// //           title: event.title,
-// //           startDate: event.startDate,
-// //           endDate: event.endDate,
-// //           description: event.description,
-// //           imageUrl: event.imageUrl,
-// //         }));
-
-// //         setEvents(formattedEvents);
-// //       } catch (error) {
-// //         console.error("Error fetching events:", error);
-// //       } finally {
-// //         setLoading(false); // Set loading to false after fetching
-// //       }
-// //     };
-
-// //     fetchEvents();
-// //   }, []);
-
-// //   return (
-// //     <div className="min-h-screen bg-gray-100 p-4 lg:p-8">
-// //       <h1 className="text-4xl font-bold text-purple-600 mb-8 text-center">
-// //         Event History
-// //       </h1>
-
-// //       {loading ? ( // Conditionally render loading indicator
-// //         <div className="flex justify-center items-center min-h-[300px]">
-// //           <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
-// //         </div>
-// //       ) : (
-// //         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-// //           {events.map((event) => (
-// //             <div
-// //               key={event.id}
-// //               className="bg-white rounded-lg shadow-md p-6 transition-transform transform hover:scale-105"
-// //             >
-// //               <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-// //                 {event.title}
-// //               </h2>
-// //               <p>Start date</p>
-// //               <p className="text-sm text-gray-500 mb-4">
-// //                 {new Date(event.startDate).toDateString()}
-// //               </p>
-// //               <p>End date</p>
-// //               <p className="text-sm text-gray-500 mb-4">
-// //                 {new Date(event.endDate).toDateString()}
-// //               </p>
-// //               <p className="text-gray-600 mb-4">{event.description}</p>
-// //             </div>
-// //           ))}
-// //         </div>
-// //       )}
-// //     </div>
-// //   );
-// // };
-
-// // export default EventHistory;
-
-// "use client";
-// import React, { useState, useEffect } from "react";
-// import Link from "next/link";
-
-// interface Event {
-//   id: string;
-//   title: string;
-//   startDate: string;
-//   endDate: string;
-//   description: string;
-//   imageUrl: string;
-// }
-
-// const EventHistory = () => {
-//   const [events, setEvents] = useState<Event[]>([]);
-//   const [loading, setLoading] = useState<boolean>(true);
-
-//   useEffect(() => {
-//     const fetchEvents = async () => {
-//       try {
-//         setLoading(true);
-//         const response = await fetch("/api/getevent");
-//         if (!response.ok) {
-//           throw new Error("Network response was not ok");
-//         }
-//         const data = await response.json();
-//         const formattedEvents = data.event.map((event: any) => ({
-//           id: event._id,
-//           title: event.title,
-//           startDate: event.startDate,
-//           endDate: event.endDate,
-//           description: event.description,
-//           imageUrl: event.imageUrl,
-//         }));
-
-//         // Filter events with endDate greater than current date
-//         const now = new Date();
-//         const upcomingEvents = formattedEvents.filter((event:any) =>
-//           new Date(event.endDate) < now
-//         );
-
-//         setEvents(upcomingEvents);
-//       } catch (error) {
-//         console.error("Error fetching events:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchEvents();
-//   }, []);
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 p-4 lg:p-8">
-//       <h1 className="text-4xl font-bold text-purple-600 mb-8 text-center">
-//         Event History
-//       </h1>
-
-//       {loading ? (
-//         <div className="flex justify-center items-center min-h-[300px]">
-//           <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
-//         </div>
-//       ) : (
-//         <div className="grid grid-cols-1   sm:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {events.length > 0 ? (
-//             events.map((event) => (
-//               <div
-//                 key={event.id}
-//                 className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 rounded-lg shadow-md p-6 transition-transform transform hover:scale-105"
-//               >
-//                 <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-//                   {event.title}
-//                 </h2>
-//                 <p>Start date</p>
-//                 <p className="text-sm text-gray-500 mb-4">
-//                   {new Date(event.startDate).toDateString()}
-//                 </p>
-//                 <p>End date</p>
-//                 <p className="text-sm text-gray-500 mb-4">
-//                   {new Date(event.endDate).toDateString()}
-//                 </p>
-//                 <p className="text-gray-600 mb-4">{event.description}</p>
-//               </div>
-//             ))
-//           ) : (
-//             <p className="text-gray-500 text-center">No events.</p>
-//           )}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default EventHistory;
 "use client";
 import React, { useState, useEffect } from "react";
+import { getEvents } from "@/actions/data";
 import Link from "next/link";
 
-import { Event } from "@/lib/types";
-
+import { FaLongArrowAltRight } from "react-icons/fa";
+interface EventHistory {
+  id: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  image?: string;
+  organiser: string;
+  description: string;
+  location: string;
+}
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return new Date(dateString).toLocaleDateString("en-US", options);
+};
 const EventHistory = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventHistory[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [showMore, setShowMore] = useState<Record<string, boolean>>({});
 
+  const fetchEvents = async () => {
+    try {
+      const eventData = await getEvents();
+      const currentDate = new Date();
+
+      const formattedEvents: EventHistory[] = eventData
+        .map((eventData: any) => ({
+          id: eventData.id as string,
+          title: eventData.title,
+          startDate: eventData.startDate.toString(),
+          endDate: eventData.endDate?.toString() || "",
+          image: eventData.image || "",
+          organiser: eventData.organiser,
+          description: eventData.description,
+          location: eventData.location,
+        }))
+        .filter((event) => new Date(event.endDate) < currentDate);
+      setEvents(formattedEvents);
+    } catch (err) {
+      console.error("Error fetching events:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/getevent");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        const formattedEvents = data.event.map((event: any) => ({
-          id: event._id,
-          title: event.title,
-          startDate: event.startDate,
-          endDate: event.endDate,
-          description: event.description,
-          imageUrl: event.imageUrl,
-        }));
-
-        // Filter events with endDate greater than current date
-        const now = new Date();
-        const upcomingEvents = formattedEvents.filter(
-          (event: any) => new Date(event.endDate) < now
-        );
-
-        setEvents(upcomingEvents);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchEvents();
   }, []);
 
+  const toggleShowMore = (id: string) => {
+    setShowMore((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
   return (
-    <div className="min-h-screen bg-gray-100  p-4 lg:p-8">
-      <h1 className="text-4xl font-bold text-purple-600 mb-8 text-center">
-        Event History
-      </h1>
-
+    <div className="min-h-screen dark:bg-gradient-to-r from-gray-900 to-gray-800 bg-gray-200 p-4">
+      <div className="mb-4 text-gray-900 dark:text-white">
+        <h1 className="text-4xl font-semibold  text-center">Event History</h1>
+      </div>
       {loading ? (
         <div className="flex justify-center items-center min-h-[300px]">
-          <div className="w-16 h-16 border-4 border-t-4 border-purple-600 border-solid rounded-full animate-spin"></div>
+          <div className="w-16 h-16 border-4 border-t-4 dark:bg-gray-900 bg-gray-200 border-indigo-500 border-solid rounded-full animate-spin"></div>
         </div>
       ) : (
-        <div className="flex gap-8">
-          {events.length > 0 ? (
-            events.map((event) => (
-              <div
-                key={event.id}
-                className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 rounded-lg shadow-md p-6 transition-transform transform hover:scale-105"
-              >
-                <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-                  {event.title}
-                </h2>
-                <p>Start date</p>
-                <p className="text-sm text-gray-500 mb-4">
-                  {new Date(event.startDate).toDateString()}
-                </p>
-                <p>End date</p>
-                <p className="text-sm text-gray-500 mb-4">
-                  {new Date(event.endDate).toDateString()}
-                </p>
-                <p className="text-gray-600 mb-4">{event.description}</p>
-              </div>
-            ))
-          ) : (
-            <div className="text-center flex justify-center items-center w-full text-gray-400 text-2xl  mt-10">
-              <div>
-                <img
-                  src="/nd.png" // Make sure to replace this path with the correct image path.
-                  alt="No data"
-                />
-              </div>
-              {/* <p className="text-gray-500 text-center">No events available.</p> */}
-            </div>
-          )}
+        <div className="flex justify-center items-center">
+          <div className="max-w-5xl grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {events.length > 0 ? (
+              events.map((event) => (
+                <div className="dark:bg-gray-700 bg-gray-300 dark:text-white text-black rounded-lg overflow-hidden shadow-md transform transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <img
+                    className="w-full h-48 object-cover"
+                    src={event.image || "/eventa1.jpg"}
+                    alt={event.title}
+                  />
+                  <div className="p-5">
+                    <h3 className="text-xl font-semibold dark:text-white text-gray-900 mb-2">
+                      {event.title}
+                    </h3>
+                    <p className="dark:text-gray-300 text-gray-800">
+                      <span className="font-semibold text-indigo-400">
+                        Start Date:
+                      </span>{" "}
+                      {formatDate(event.startDate)}
+                    </p>
+                    <p className="dark:text-gray-300 text-gray-800">
+                      <span className="font-semibold text-indigo-400">
+                        End Date:
+                      </span>{" "}
+                      {formatDate(event.endDate)}
+                    </p>
+                  </div>
+                  <Link key={event.id} href={`/user/eventhistory/${event.id}`}>
+                    <div className="px-5 pb-4 flex justify-center">
+                      <button className="relative py-2 px-4 hover:scale-[1.05] rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-all duration-500 ease-in-out group flex items-center justify-center">
+                        more details
+                        <FaLongArrowAltRight className="ml-2 text-2xl" />
+                      </button>
+                    </div>
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p className="dark:text-gray-200 text-gray-600 text-center">
+                No past events found.
+              </p>
+            )}
+          </div>
         </div>
       )}
     </div>

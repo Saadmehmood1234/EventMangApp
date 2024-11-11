@@ -158,8 +158,8 @@ const ScrollAreaHorizontalDemo = () => {
         Discover & Join{" "}
         <span className="max-sm:text-3xl">Thrilling Events</span>
       </h1>
-    <div className="flex justify-center items-center">
-    <ScrollArea className="w-full xl:max-w-7xl flex justify-center items-center lg:max-w-5xl md:max-w-3xl sm:max-w-2xl max-sm:max-w-[360px] h-[60vh] max-sm:h-[50vh]  bg-gray-200 dark:bg-gray-700  rounded-lg shadow-lg overflow-x-auto p-4">
+    <div className="flex justify-center  items-center">
+    <ScrollArea className="w-full xl:7xl flex justify-center items-center lg:max-w-5xl md:max-w-3xl sm:max-w-2xl max-sm:max-w-[360px] h-[60vh] max-sm:h-[50vh]  bg-gray-200 dark:bg-gray-700  rounded-lg shadow-lg overflow-x-auto p-4">
         <div className="flex w-max mt-4 ">
           <figure
             key={works[currentIndex].artist}
