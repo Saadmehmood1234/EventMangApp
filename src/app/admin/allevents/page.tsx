@@ -10,6 +10,8 @@ interface AllEvent {
   endDate: string;
   image?: string;
   organiser: string;
+  sponsor:string;
+  category:string;
   description: string;
   location: string;
 }
@@ -34,6 +36,8 @@ const EventTable = () => {
           endDate: eventData.endDate?.toString() || "",
           image: eventData.image || "",
           organiser: eventData.organiser,
+          sponsor: eventData.sponsor,
+          category: eventData.category,
           description: eventData.description,
           location: eventData.location,
         })
@@ -148,9 +152,9 @@ const EventTable = () => {
                   </th>
                   <th className="border border-gray-600 px-4 py-2">End Date</th>
                   <th className="border border-gray-600 px-4 py-2">Location</th>
-                  <th className="border border-gray-600 px-4 py-2">
-                    Organiser
-                  </th>
+                  <th className="border border-gray-600 px-4 py-2">Organiser</th>
+                  {/* <th className="border border-gray-600 px-4 py-2">Sponsors</th> */}
+                  <th className="border border-gray-600 px-4 py-2">Category</th>
                   <th className="border border-gray-600 px-4 py-2">Actions</th>
                 </tr>
               </thead>
@@ -176,6 +180,12 @@ const EventTable = () => {
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       {event.organiser}
+                    </td>
+                    {/* <td className="border border-gray-300 px-4 py-2">
+                      {event.sponsor}
+                    </td> */}
+                    <td className="border border-gray-300 px-4 py-2">
+                      {event.category}
                     </td>
                     <td className="border border-gray-300 px-4 py-2 text-center">
                       <button

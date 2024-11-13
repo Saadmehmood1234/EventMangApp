@@ -114,22 +114,20 @@ export async function fetchParticipantsById(participantId: string) {
   }
 }
 
-
 export const deleteEvent = async (id: string) => {
   try {
     await connectToMongoDb();
-
-    // Delete the event
     const deletedEvent = await Event.findByIdAndDelete(id);
     if (!deletedEvent) {
       throw new Error("Event not found");
     }
+    await EventParticipant.deleteMany({ eventId: id });
+    console.log(`Event and associated participants deleted successfully for event ID: ${id}`);
   } catch (error: any) {
     console.error("Error deleting event:", error);
     throw new Error(error.message || "Internal server error");
   }
 };
-
 
 
 export const getAllUserData = async () => {

@@ -45,10 +45,10 @@ const EventsCard: React.FC<EventsCardProps> = ({ events, searchQuery }) => {
                 <div className="p-5">
                   <h3 className="text-xl font-semibold dark:text-white text-gray-900 mb-2">{event.title}</h3>
                   <p className="dark:text-gray-300 text-gray-800">
-                    <span className="font-semibold text-indigo-400">Start Date:</span> {formatDate(event.startDate)}
+                    <span className="font-semibold text-indigo-400">Start:</span> {formatDate(event.startDate)}
                   </p>
                   <p className="dark:text-gray-300 text-gray-800">
-                    <span className="font-semibold text-indigo-400">End Date:</span> {formatDate(event.endDate)}
+                    <span className="font-semibold text-indigo-400">End:</span> {formatDate(event.endDate)}
                   </p>
                 </div>
                 <div className="px-5 pb-4 flex justify-center">

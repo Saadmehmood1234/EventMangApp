@@ -1,4 +1,3 @@
-
 import { Select } from "flowbite-react";
 import mongoose, { Schema, model, models } from "mongoose";
 const userSchema = new Schema({

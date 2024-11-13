@@ -87,13 +87,13 @@ const EventHistory = () => {
                     </h3>
                     <p className="dark:text-gray-300 text-gray-800">
                       <span className="font-semibold text-indigo-400">
-                        Start Date:
+                        Started:
                       </span>{" "}
                       {formatDate(event.startDate)}
                     </p>
                     <p className="dark:text-gray-300 text-gray-800">
                       <span className="font-semibold text-indigo-400">
-                        End Date:
+                        Ended:
                       </span>{" "}
                       {formatDate(event.endDate)}
                     </p>
