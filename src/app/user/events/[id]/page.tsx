@@ -1,5 +1,3 @@
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaCalendarAlt, FaUser } from "react-icons/fa";
@@ -12,6 +10,7 @@ import { MdOutlineDescription } from "react-icons/md";
 import { FaTags } from "react-icons/fa";
 import { MdCategory } from "react-icons/md";
 import { Event } from "@/lib/types";
+import { TfiTime } from "react-icons/tfi";
 const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -51,6 +50,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
             location: participantData.location,
             members: participantData.members,
             sponsors: participantData.sponsors,
+            time:participantData.time,
             category: participantData.category,
             tags: participantData.tags,
           };
@@ -69,7 +69,7 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="flex justify-center items-center min-h-screen bg-gray-200 dark:bg-gradient-to-b from-gray-900 to-gray-800">
         <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
       </div>
     );
@@ -85,11 +85,11 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
 
   return (
     <div className="min-h-screen bg-gray-200 text-gray-900 dark:bg-gradient-to-b from-gray-900 to-gray-800 flex justify-center items-center dark:text-gray-100">
-      <div className="max-w-4xl w-full bg-white dark:bg-gray-700 rounded-lg shadow-md p-8">
+      <div className="max-w-4xl lg:my-12 w-full bg-white dark:bg-gray-700 rounded-lg shadow-md p-8">
         <img
           src={event.image || "/eventa1.jpg"}
           alt={event.title}
-          className="w-full h-64 object-cover rounded-lg mb-6 shadow-lg"
+          className="w-full  object-cover rounded-lg mb-6 shadow-lg"
         />
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
           {event.title}
@@ -111,16 +111,17 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
         <div className="flex max-sm:flex-col mb-2">
           <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full ">
             <LiaPeopleCarrySolid className="mr-2 text-indigo-400" />
-            <h2 className="text-xl font-semibold">Organised by:</h2>
+            <h2 className="text-lg font-semibold">Organised by:</h2>
             <span className="ml-2 text-lg">{event.organiser}</span>
           </div>
 
           <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full">
             <GiReceiveMoney className="mr-2 text-indigo-400" />
-            <h2 className="text-xl font-semibold">Sponsors:</h2>
+            <h2 className="text-lg font-semibold">Sponsors:</h2>
             <span className="ml-2 text-lg">{event.sponsors || "None"}</span>
           </div>
         </div>
+  
 
         <div className="flex max-sm:flex-col text-gray-900 dark:text-white mb-2">
           <div className="flex items-center sm:w-1/2 w-full mb-2 mr-6 ">
@@ -134,13 +135,18 @@ const EventDetail: React.FC<EventDetailProps> = ({ params }) => {
             <span>{event.location}</span>
           </div>
         </div>
+        <div className="flex max-sm:flex-col mb-2">
+          <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full ">
+            <TfiTime className="mr-2 text-indigo-400" />
+            <h2 className="text-lg font-semibold">Time:</h2>
+            <span className="ml-2 text-lg">{event.time}</span>
+          </div>
 
-        <div className="flex items-center text-gray-900 dark:text-white mb-2">
-          <FaTags className="mr-2 text-indigo-400" />
-          <h2 className="text-xl font-semibold mb-2">Tags:</h2>
-          <span className="ml-2 text-lg">
-            {event.tags?.join(", ") || "No tags"}
-          </span>
+          <div className="flex items-center text-gray-900 dark:text-white mb-2 sm:w-1/2 w-full">
+            <FaTags className="mr-2 text-indigo-400" />
+            <h2 className="text-lg font-semibold">Tags:</h2>
+            <span className="ml-2 text-lg">  {event.tags?.join(", ") || "No tags"}</span>
+          </div>
         </div>
 
         <div className="mb-4">

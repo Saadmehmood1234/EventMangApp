@@ -100,7 +100,7 @@ const EventHistory = () => {
                   </div>
                   <Link key={event.id} href={`/user/eventhistory/${event.id}`}>
                     <div className="px-5 pb-4 flex justify-center">
-                      <button className="relative py-2 px-4 hover:scale-[1.05] rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-all duration-500 ease-in-out group flex items-center justify-center">
+                      <button className="relative w-full py-2 px-4 hover:scale-[1.05] rounded-md text-white bg-indigo-500 hover:bg-indigo-600 transition-all duration-500 ease-in-out group flex items-center justify-center">
                         more details
                         <FaLongArrowAltRight className="ml-2 text-2xl" />
                       </button>

@@ -19,6 +19,7 @@ export async function getEvents() {
       description: event.description,
       organiser: event.organiser,
       members: event.members,
+      time:event.time,
       sponsors: event.sponsors,
       tags: event.tags,
       category: event.category,
@@ -53,6 +54,7 @@ export async function fetchEventById(eventId: string) {
       organiser: event.organiser,
       members: event.members,
       sponsors: event.sponsors,
+      time:event.time,
       tags: event.tags,
       category: event.category,
     };

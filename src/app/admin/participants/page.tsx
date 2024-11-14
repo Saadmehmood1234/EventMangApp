@@ -569,6 +569,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { getParticipants, getEvents } from "@/actions/data";
+import { Separator } from "@/components/ui/separator"
+
 interface Event{
   id: string;
   title:string;
@@ -685,8 +687,6 @@ const ParticipantPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Events List */}
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {events.map((event) => {
           const eventParticipants = participants.filter(
@@ -700,12 +700,12 @@ const ParticipantPage = () => {
           return (
             <div
               key={event.id}
-              className="dark:bg-gradient-to-r from-gray-700 to-gray-600 bg-white p-6 rounded-lg shadow-lg hover:scale-[1.02] hover:shadow-2xl transition-all duration-300"
+              className="dark:bg-gradient-to-r  from-gray-700 to-gray-600 bg-white p-6 rounded-lg shadow-lg hover:scale-[1.02] hover:shadow-2xl transition-all duration-300"
             >
-              <div className="flex justify-between items-center mb-4">
-                <div>
+              <div className="flex max-xl:flex-col justify-between items-center mb-4">
+                <div className="flex flex-col max-xl:justify-center max-xl:items-center">
                   <h2 className="text-2xl font-semibold text-indigo-500">{event.title}</h2>
-                  <p className="dark:text-gray-200 text-gray-600">{event.organiser}</p>
+                  {/* <p className="dark:text-gray-200 text-gray-600">{event.organiser}</p> */}
                 </div>
                 <div className="text-lg dark:text-gray-100 text-gray-500">
                   Participants:{" "}
@@ -713,10 +713,13 @@ const ParticipantPage = () => {
                     {eventParticipants.length}
                   </span>
                 </div>
+                
               </div>
+              <Separator />
+
 
               {/* Participants List */}
-              <ul className="space-y-3">
+              <ul className="space-y-3 mt-2">
                 {displayedParticipants.length > 0 ? (
                   displayedParticipants.map((participant) => (
                     <li key={participant.id} className="flex justify-between items-center">

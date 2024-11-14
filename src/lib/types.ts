@@ -18,6 +18,20 @@ export interface Image {
     tags: string[];
     description: string;
   }
+  // export interface EventFormDataMain {
+  //   title: string;
+  //   members: number;
+  //   location: string;
+  //   category: string;
+  //   startDate: Date;
+  //   endDate: Date;
+  //   time: string;
+  //   organizerName: string;
+  //   sponsors: string[];
+  //   image: File | null;
+  //   tags: string[];
+  //   description: string;
+  // }
   export interface Event {
     id: string;
     title: string;
@@ -26,6 +40,7 @@ export interface Image {
     location: string;
     organiser: string;
     description: string;
+    time?:string;
     image?: string;
     category?:string;
     sponsors?:string[];
