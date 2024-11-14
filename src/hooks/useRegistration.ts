@@ -10,6 +10,7 @@ interface Registration {
   //   attendees?: mongoose.Schema.Types.ObjectId[];
   phone: string;
   email: string;
+  userId:string;
 }
 
 interface SignupResponse {
@@ -27,7 +28,8 @@ const useRegistration = () => {
     course,
     phone,
     email,
-    eventId
+    eventId,
+    userId
   }: Registration) => {
     const success = handleInputErrors({
       fullname,
@@ -36,7 +38,8 @@ const useRegistration = () => {
       course,
       email,
       phone,
-      eventId
+      eventId,
+      userId
     });
     if (!success) return;
 
@@ -52,11 +55,13 @@ const useRegistration = () => {
           course,
           email,
           phone,
-          eventId
+          eventId,
+          userId
         }),
       });
+      console.log("My data:",userId)
       const data: SignupResponse = await res.json();
-
+  
       if (data.error) throw new Error(data.error);
 
       localStorage.setItem("eventUser", JSON.stringify(data));

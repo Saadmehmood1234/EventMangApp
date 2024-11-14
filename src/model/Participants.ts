@@ -1,17 +1,16 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
-
 export interface IEvent extends Document {
   fullname: string;
   enrollment: string;
   semester: string;
   course: string;
   eventId: string;
+  userId:string;
   phone: string;
   email: string;
   event: string;
   createdAt: Date;
 }
-
 const participantSchema: Schema<IEvent> = new Schema({
   fullname: {
     type: String,
@@ -42,6 +41,9 @@ const participantSchema: Schema<IEvent> = new Schema({
   eventId: {
     type: String,
   },
+  userId:{
+    type: String,
+  },
   event: {
       // type: mongoose.Schema.Types.ObjectId,
       // ref: 'Event', 
@@ -57,5 +59,4 @@ const participantSchema: Schema<IEvent> = new Schema({
 const EventParticipant: Model<IEvent> =
   mongoose.models.EventParticipant ||
   mongoose.model<IEvent>("EventParticipant", participantSchema);
-
 export default EventParticipant;

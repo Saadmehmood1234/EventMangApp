@@ -156,6 +156,8 @@ export const deleteUser = async (id: string) => {
     if (!deletedUser) {
       throw new Error("User not found");
     }
+    await EventParticipant.deleteMany({ userId: id });
+    console.log(`Event and associated participants deleted successfully for event ID: ${id}`);
   } catch (error: any) {
     console.error("Error deleting user:", error);
     throw new Error(error.message || "Internal server error");
@@ -175,13 +177,10 @@ export const updateParticipant = async (participantId: string, updatedData: Part
     const updatedParticipant = await EventParticipant.findByIdAndUpdate(participantId, updatedData, { new: true });
 
     if (!updatedParticipant) {
-      throw new Error("Participant not found"); // Handle case where participant is not found
+      throw new Error("Participant not found"); 
     }
 
-    console.log("Updated Participant:", updatedParticipant); // Log the updated participant data
-
-    // Return the updated participant object
- 
+    console.log("Updated Participant:", updatedParticipant); 
   } catch (error: any) {
     console.error("Error updating participant:", error);
     throw new Error(error.message || "Internal server error while updating participant");

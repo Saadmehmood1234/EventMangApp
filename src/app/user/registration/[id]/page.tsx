@@ -379,7 +379,7 @@ import SuccessModal from "@/components/SuccessModal";
 import { getUserData } from "@/actions/authActions";
 import useRegistration from "@/hooks/useRegistration";
 import { fetchEventById } from "@/actions/data"; // Import the server action
-import { Spinner } from "@nextui-org/react";
+import { Spinner, user } from "@nextui-org/react";
 import { User ,Event,InputState} from '@/lib/types';
 // Define your Zod schema
 const registrationSchema = z.object({
@@ -425,7 +425,9 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
     email: "",
     phone: "",
     image: "",
+    userId:"",
     eventId: params.id,
+  
   });
   const fetchUsers = async () => {
     try {
@@ -453,6 +455,16 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
   }, []);
 
   // Set the name and email from currentUser into inputs once fetched
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     setInputs((prevInputs) => ({
+  //       ...prevInputs,
+  //       fullname: currentUser.name,
+  //       email: currentUser.email,
+  //       image: currentUser.image ?? "", // Ensure image is either a string or an empty string
+  //     }));
+  //   }
+  // }, [currentUser]);
   useEffect(() => {
     if (currentUser) {
       setInputs((prevInputs) => ({
@@ -460,6 +472,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
         fullname: currentUser.name,
         email: currentUser.email,
         image: currentUser.image ?? "", // Ensure image is either a string or an empty string
+        userId: currentUser.id, // Set userId based on the currentUser
       }));
     }
   }, [currentUser]);
@@ -473,8 +486,10 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
     setLoading(true);
     setFormErrors({});
     try {
+      console.log("My input data:",inputs)
       registrationSchema.parse(inputs);
       setFormErrors({});
+      console.log("My input data djsldkslk:",inputs)
       const data = await registration(inputs);
       if (data) {
         setApiResponseMessage("Registration successful!");
@@ -545,7 +560,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-900">
+      <div className="flex justify-center items-center min-h-screen bg-gray-200 dark:bg-gray-900">
         <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
       </div>
     );
@@ -559,6 +574,7 @@ const EventRegistrationForm: React.FC<EventDetailProps> = ({ params }) => {
     //   </div>
     // );
   }
+  console.log(inputs)
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-200 dark:bg-gray-900 p-6">

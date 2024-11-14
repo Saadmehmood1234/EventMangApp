@@ -138,7 +138,7 @@ const EventTable = () => {
           </div>
         </div>
         {loading ? (
-          <div className="flex justify-center items-center min-h-screen">
+          <div className="flex justify-center dark:bg-gray-900 bg-gray-200 items-center min-h-screen">
             <div className="w-16 h-16 border-4 border-t-4 border-indigo-500 border-solid rounded-full animate-spin"></div>
           </div>
         ) : (

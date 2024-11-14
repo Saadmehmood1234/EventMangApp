@@ -54,6 +54,7 @@ export interface Image {
     phone: string;
     image: string;
     eventId: string;
+    userId:string
   }
 export interface Participant {
   id: string;

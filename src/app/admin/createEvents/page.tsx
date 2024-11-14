@@ -119,9 +119,9 @@
 //                 className="w-full px-4 py-2 border dark:text-gray-100 text-gray-800 dark:bg-[#6b6b6b] border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
-//               {errors.title && (
-//                 <p className="text-red-500 text-sm">{errors.title}</p>
-//               )}
+// {errors.title && (
+//   <p className="text-red-500 text-sm">{errors.title}</p>
+// )}
 //             </div>
 //             <div className="col-span-1 max-lg:col-span-2">
 //               <label
@@ -159,9 +159,9 @@
 //                 className="w-full px-4 py-2 border dark:text-gray-100 text-gray-800 dark:bg-[#6b6b6b] border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
-//               {errors.location && (
-//                 <p className="text-red-500 text-sm">{errors.location}</p>
-//               )}
+// {errors.location && (
+//   <p className="text-red-500 text-sm">{errors.location}</p>
+// )}
 //             </div>
 //             <div className="col-span-1 max-lg:col-span-2">
 //               <label
@@ -201,9 +201,9 @@
 //                 className="w-full px-4 py-2 border dark:text-gray-100 text-gray-800 dark:bg-[#6b6b6b] border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
 //                 required
 //               />
-//               {errors.startDate && (
-//                 <p className="text-red-500 text-sm">{errors.startDate}</p>
-//               )}
+// {errors.startDate && (
+//   <p className="text-red-500 text-sm">{errors.startDate}</p>
+// )}
 //             </div>
 //             <div className="col-span-1">
 //               <label
@@ -343,9 +343,7 @@
 
 // export default CreateEvent;
 
-
 "use client";
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CalendarIcon, Clock, Upload, Plus, X } from "lucide-react";
@@ -355,6 +353,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Popover,
   PopoverContent,
@@ -362,6 +361,29 @@ import {
 } from "@/components/ui/popover";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EventFormData } from "@/lib/types";
+import { z } from "zod";
+const eventSchema = z
+  .object({
+    title: z.string().min(4, "Title should be at least 4 characters long"),
+    members: z.string().min(1, "Members are required"),
+    description: z.string().min(10, "Description must be at least 10 characters long"),
+    startDate: z.string().min(1, "Start date is required"),
+    endDate: z.string().min(1, "End date is required"),
+    time: z.string().min(1, "Time is required"),
+    location: z.string().min(1, "Location is required"),
+    tags: z.string().min(1, "At least one tag is required"),
+    organizerName: z.string().min(1, "Organizer name is required"),
+    sponsers: z.string().optional(),
+    category: z.string().min(1, "Category is required"),
+  })
+  .refine((data) => new Date(data.startDate) >= new Date(), {
+    message: "Start date must be today or in the future",
+    path: ["startDate"],
+  })
+  .refine((data) => new Date(data.endDate) >= new Date(data.startDate), {
+    message: "End date must be greater than or equal to the start date",
+    path: ["endDate"],
+  });
 
 export default function CreateEventPage() {
   const [members, setMembers] = useState<string[]>([]);
@@ -376,7 +398,9 @@ export default function CreateEventPage() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm<EventFormData>();
+  } = useForm<EventFormData>({
+    resolver: zodResolver(eventSchema),
+  });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -478,6 +502,11 @@ export default function CreateEventPage() {
                     required: "Category is required",
                   })}
                 />
+                {errors.category && (
+                  <p className="text-red-500 text-sm">
+                    {errors.category.message}
+                  </p>
+                )}
               </div>
 
               {/* Location */}
@@ -489,6 +518,11 @@ export default function CreateEventPage() {
                     required: "Location is required",
                   })}
                 />
+                {errors.location && (
+                  <p className="text-red-500 text-sm">
+                    {errors.location.message}
+                  </p>
+                )}
               </div>
 
               {/* Organizer Name */}
@@ -500,6 +534,11 @@ export default function CreateEventPage() {
                     required: "Organizer name is required",
                   })}
                 />
+                 {errors.organizerName && (
+                  <p className="text-red-500 text-sm">
+                    {errors.organizerName.message}
+                  </p>
+                )}
               </div>
 
               {/* Date Range */}
@@ -526,6 +565,11 @@ export default function CreateEventPage() {
                       onSelect={(date: any) => setValue("startDate", date)}
                       initialFocus
                     />
+                    {errors.startDate && (
+                      <p className="text-red-500 text-sm">
+                        {errors.startDate.message}
+                      </p>
+                    )}
                   </PopoverContent>
                 </Popover>
               </div>
@@ -553,6 +597,11 @@ export default function CreateEventPage() {
                       onSelect={(date: any) => setValue("endDate", date)}
                       initialFocus
                     />
+                    {errors.endDate && (
+                      <p className="text-red-500 text-sm">
+                        {errors.endDate.message}
+                      </p>
+                    )}
                   </PopoverContent>
                 </Popover>
               </div>
@@ -565,13 +614,18 @@ export default function CreateEventPage() {
                   type="time"
                   {...register("time", { required: "Time is required" })}
                 />
+                 {errors.time && (
+                <p className="text-red-500 text-sm">
+                  {errors.time.message}
+                </p>
+              )}
               </div>
               {/* Members */}
               <div className="space-y-2">
                 <Label htmlFor="members">Team Size</Label>
 
                 <Input
-                id="members"
+                  id="members"
                   type="number"
                   placeholder="Please enter number in a team (e.g:1,2,..) "
                   {...register("members", { required: "Members is required" })}
@@ -689,9 +743,18 @@ export default function CreateEventPage() {
                 })}
                 className="min-h-[150px]  focus:ring-2 focus:ring-indigo-400"
               />
+              {errors.description && (
+                <p className="text-red-500 text-sm">
+                  {errors.description.message}
+                </p>
+              )}
             </div>
 
-            <Button type="submit" className="w-full bg-indigo-400 text-white hover:bg-indigo-500" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full bg-indigo-400 text-white hover:bg-indigo-500"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? "Creating Event..." : "Create Event"}
             </Button>
           </form>
