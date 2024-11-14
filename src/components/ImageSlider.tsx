@@ -58,7 +58,7 @@ const ScrollAreaHorizontalDemo = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [events]);
 
@@ -74,15 +74,15 @@ const ScrollAreaHorizontalDemo = () => {
         Discover & Join{" "}
         <span className="max-sm:text-3xl">Thrilling Events</span>
       </h1>
-      <div className="flex justify-center items-center">
-        <ScrollArea className="w-full flex justify-center items-center h-[60vh] max-sm:h-[50vh] bg-gray-200 dark:bg-gray-700 rounded-lg shadow-lg overflow-x-auto p-4">
+      <div className="flex justify-center  items-center">
+      <ScrollArea className="w-full xl:7xl flex justify-center items-center lg:max-w-5xl md:max-w-3xl sm:max-w-2xl max-sm:max-w-[360px] h-[60vh] max-sm:h-[50vh]  bg-gray-200 dark:bg-gray-700  rounded-lg shadow-lg overflow-x-auto p-4">
           <div className="flex w-max mt-4">
             {events.length > 0 && (
               <figure
                 key={events[currentIndex].id}
                 className="shrink-0 relative"
               >
-                <div className="flex items-center justify-center w-[100vh] h-[50vh] max-sm:h-[40vh] md:h-[54vh] bg-gray-700 rounded-lg shadow-md transition-transform duration-300 ease-in-out overflow-hidden">
+                <div className="flex items-center justify-center w-[100vh] ] h-[50vh] max-sm:h-[40vh] md:h-[54vh]   bg-gray-700 rounded-lg shadow-md  transition-transform duration-300 ease-in-out overflow-hidden">
                   <Image
                     src={events[currentIndex].image || defaultImage}
                     alt={`Event organized by DBIT}`}
