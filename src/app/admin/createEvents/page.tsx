@@ -453,7 +453,11 @@ export default function CreateEventPage() {
         body: formData,
       });
 
-      if (!response.ok) throw new Error("Failed to create event");
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        console.error("Error details:", errorDetails);
+        throw Error("Failed to create event");
+    }
 
       // Reset form or redirect
       window.location.href = "/admin";
